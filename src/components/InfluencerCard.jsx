@@ -34,7 +34,7 @@ const InfluencerCard = ({ image, alt = "Influencer", followers, className = "" }
         <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2">
           <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
             <svg 
-              className="w-4 h-4 text-pink-500" 
+              className="w-4 h-4 text-red-600" 
               fill="currentColor" 
               viewBox="0 0 24 24"
             >

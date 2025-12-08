@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
-/* Custom CSS Variables for the design system */
+/* Custom CSS Variables for the design system - Kırmızı-Beyaz Tema */
 :root {
-  --bg-dark: #171719;
-  --accent-lime: #d3f26a;
-  --accent-purple: #ad7bff;
-  --off-white: #f2f4f0;
+  --bg-dark: #ffffff;
+  --bg-light: #f9fafb;
+  --accent-red: #DC2626;
+  --accent-red-light: #EF4444;
+  --accent-red-dark: #B91C1C;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --off-white: #ffffff;
 }
 
 /* Apply Poppins font globally */
@@ -17,7 +21,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-dark);
-  color: var(--off-white);
+  color: var(--text-dark);
   min-height: 100vh;
 }
 
@@ -30,20 +34,20 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar for dark theme */
+/* Custom scrollbar for light theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #242426;
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4a4a4d;
+  background: #DC2626;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5a5a5d;
+  background: #B91C1C;
 }

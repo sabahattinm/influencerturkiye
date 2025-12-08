@@ -2,7 +2,7 @@ import { Quote } from 'lucide-react';
 
 /**
  * TestimonialsSection Component
- * Uzman görüşleri
+ * Uzman görüşleri - Kırmızı-Beyaz Tema
  */
 const TestimonialsSection = () => {
   const testimonials = [
@@ -10,31 +10,31 @@ const TestimonialsSection = () => {
       quote: "Instagram'ın algoritmasını kullanıcının ilgi alanına göre içeriği önceliklendirme şeklinde değiştirmesinin 'micro-influencer'ların paylaşımlarının platformda daha görünür hale getirdiğini söylüyor.",
       author: "Chris Gonzales",
       role: "Gnack CEO",
-      color: "#d3f26a"
+      color: "#DC2626"
     },
     {
       quote: "Genellikle yaklaşık 100.000 ila 200.000 takipçisi olan sosyal medya kullanıcılarını tanımlamak için 'power-middle influencers' tabirini kullanıyor.",
       author: "Fergus Thomas",
       role: "Influencer Marketing Uzmanı",
-      color: "#ad7bff"
+      color: "#EF4444"
     },
     {
       quote: "Moda influencer'larının katıldıkları moda haftalarından paylaştığı içerikler moda dergileri ile yarışıyor. Sosyal medya moda endüstrisine şeffaflık getirdi.",
       author: "Sektör Analizi",
       role: "Marketing Insight",
-      color: "#ff7bb8"
+      color: "#B91C1C"
     }
   ];
 
   return (
-    <section className="bg-[#1a1a1c] py-20 px-6">
+    <section className="bg-gray-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-[#d3f26a] text-sm font-semibold tracking-wider uppercase">
+          <span className="text-red-600 text-sm font-semibold tracking-wider uppercase">
             Görüşler
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mt-4">
             Uzman Görüşleri
           </h2>
         </div>
@@ -44,7 +44,7 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <div 
               key={index}
-              className="bg-[#242426] rounded-3xl p-8 relative group hover:bg-[#2a2a2c] transition-all"
+              className="bg-white border border-gray-200 rounded-3xl p-8 relative group hover:bg-red-50 hover:border-red-200 transition-all shadow-sm"
             >
               <div 
                 className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
@@ -53,20 +53,20 @@ const TestimonialsSection = () => {
                 <Quote className="w-6 h-6" style={{ color: testimonial.color }} />
               </div>
 
-              <p className="text-gray-300 leading-relaxed mb-8">
+              <p className="text-gray-700 leading-relaxed mb-8">
                 "{testimonial.quote}"
               </p>
 
               <div className="flex items-center gap-4">
                 <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm"
-                  style={{ backgroundColor: testimonial.color, color: '#171719' }}
+                  className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm text-white"
+                  style={{ backgroundColor: testimonial.color }}
                 >
                   {testimonial.author.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
-                  <div className="text-white font-semibold">{testimonial.author}</div>
-                  <div className="text-gray-500 text-sm">{testimonial.role}</div>
+                  <div className="text-gray-900 font-semibold">{testimonial.author}</div>
+                  <div className="text-gray-600 text-sm">{testimonial.role}</div>
                 </div>
               </div>
             </div>

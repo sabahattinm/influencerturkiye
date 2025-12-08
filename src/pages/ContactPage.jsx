@@ -38,43 +38,43 @@ const ContactPage = () => {
       icon: MapPin,
       title: "Adres",
       content: "Etiler / Beşiktaş / İstanbul",
-      color: "#d3f26a"
+      color: "#DC2626"
     },
     {
       icon: Phone,
       title: "Telefon",
       content: "+90 (554) 229 01 01",
-      color: "#ad7bff",
+      color: "#EF4444",
       link: "tel:+905542290101"
     },
     {
       icon: Mail,
       title: "E-posta",
       content: "info@influencerturkiye.com",
-      color: "#ff7bb8",
+      color: "#B91C1C",
       link: "mailto:info@influencerturkiye.com"
     },
     {
       icon: Clock,
       title: "Çalışma Saatleri",
       content: "Pazartesi - Cuma: 09:00 - 18:00",
-      color: "#4ecdc4"
+      color: "#DC2626"
     }
   ];
 
   return (
-    <section className="bg-[#171719] py-20 px-6 min-h-screen">
+    <section className="bg-white py-20 px-6 min-h-screen">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-[#d3f26a] text-sm font-semibold tracking-wider uppercase">
+          <span className="text-red-600 text-sm font-semibold tracking-wider uppercase">
             İletişim
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-4">
             Bizimle İletişime Geçin
           </h1>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 mt-6 max-w-2xl mx-auto text-lg">
             Sorularınız, önerileriniz veya işbirliği teklifleriniz için bizimle iletişime geçmekten çekinmeyin. 
             Size en kısa sürede dönüş yapacağız.
           </p>
@@ -98,7 +98,7 @@ const ContactPage = () => {
             return (
               <div 
                 key={index}
-                className="bg-[#242426] rounded-3xl p-6 text-center hover:bg-[#2a2a2c] transition-all"
+                className="bg-gray-50 border border-gray-200 rounded-3xl p-6 text-center hover:bg-red-50 hover:border-red-200 transition-all"
               >
                 <div 
                   className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
@@ -106,8 +106,8 @@ const ContactPage = () => {
                 >
                   <IconComponent className="w-7 h-7" style={{ color: info.color }} />
                 </div>
-                <h3 className="text-white font-semibold mb-2">{info.title}</h3>
-                <p className="text-gray-400 text-sm">{content}</p>
+                <h3 className="text-gray-900 font-semibold mb-2">{info.title}</h3>
+                <p className="text-gray-600 text-sm">{content}</p>
               </div>
             );
           })}
@@ -116,8 +116,8 @@ const ContactPage = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           
           {/* Left - Contact Form */}
-          <div className="bg-[#1a1a1c] rounded-3xl p-8 md:p-10 border border-white/5">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+          <div className="bg-gray-50 border border-gray-200 rounded-3xl p-8 md:p-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               Bize Ulaşın
             </h2>
             
@@ -128,8 +128,8 @@ const ContactPage = () => {
                 onClick={() => setFormData({ ...formData, type: 'brand' })}
                 className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all ${
                   formData.type === 'brand'
-                    ? 'bg-[#d3f26a] text-black'
-                    : 'bg-[#242426] text-gray-400 hover:bg-[#2a2a2c]'
+                    ? 'bg-red-600 text-white'
+                    : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 Markayım
@@ -139,8 +139,8 @@ const ContactPage = () => {
                 onClick={() => setFormData({ ...formData, type: 'influencer' })}
                 className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all ${
                   formData.type === 'influencer'
-                    ? 'bg-[#ad7bff] text-white'
-                    : 'bg-[#242426] text-gray-400 hover:bg-[#2a2a2c]'
+                    ? 'bg-red-600 text-white'
+                    : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 Influencer'ım
@@ -150,7 +150,7 @@ const ContactPage = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name */}
               <div>
-                <label className="text-gray-400 text-sm mb-2 block">Ad Soyad *</label>
+                <label className="text-gray-700 text-sm mb-2 block">Ad Soyad *</label>
                 <div className="relative">
                   <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
@@ -159,7 +159,7 @@ const ContactPage = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Adınız Soyadınız"
-                    className="w-full bg-[#242426] border border-white/5 rounded-xl py-4 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#d3f26a]/50 transition-colors"
+                    className="w-full bg-white border border-gray-300 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600 transition-colors"
                     required
                   />
                 </div>
@@ -167,7 +167,7 @@ const ContactPage = () => {
 
               {/* Email */}
               <div>
-                <label className="text-gray-400 text-sm mb-2 block">E-posta *</label>
+                <label className="text-gray-700 text-sm mb-2 block">E-posta *</label>
                 <div className="relative">
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
@@ -176,7 +176,7 @@ const ContactPage = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="ornek@email.com"
-                    className="w-full bg-[#242426] border border-white/5 rounded-xl py-4 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#d3f26a]/50 transition-colors"
+                    className="w-full bg-white border border-gray-300 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600 transition-colors"
                     required
                   />
                 </div>
@@ -185,7 +185,7 @@ const ContactPage = () => {
               {/* Phone & Company */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-gray-400 text-sm mb-2 block">Telefon</label>
+                  <label className="text-gray-700 text-sm mb-2 block">Telefon</label>
                   <div className="relative">
                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                     <input
@@ -194,12 +194,12 @@ const ContactPage = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+90 5XX XXX XX XX"
-                      className="w-full bg-[#242426] border border-white/5 rounded-xl py-4 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#d3f26a]/50 transition-colors"
+                      className="w-full bg-white border border-gray-300 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600 transition-colors"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="text-gray-400 text-sm mb-2 block">Şirket</label>
+                  <label className="text-gray-700 text-sm mb-2 block">Şirket</label>
                   <div className="relative">
                     <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                     <input
@@ -208,7 +208,7 @@ const ContactPage = () => {
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Şirket Adı"
-                      className="w-full bg-[#242426] border border-white/5 rounded-xl py-4 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#d3f26a]/50 transition-colors"
+                      className="w-full bg-white border border-gray-300 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600 transition-colors"
                     />
                   </div>
                 </div>
@@ -216,21 +216,21 @@ const ContactPage = () => {
 
               {/* Subject */}
               <div>
-                <label className="text-gray-400 text-sm mb-2 block">Konu *</label>
+                <label className="text-gray-700 text-sm mb-2 block">Konu *</label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="Mesajınızın konusu"
-                  className="w-full bg-[#242426] border border-white/5 rounded-xl py-4 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#d3f26a]/50 transition-colors"
+                  className="w-full bg-white border border-gray-300 rounded-xl py-4 px-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600 transition-colors"
                   required
                 />
               </div>
 
               {/* Message */}
               <div>
-                <label className="text-gray-400 text-sm mb-2 block">Mesajınız *</label>
+                <label className="text-gray-700 text-sm mb-2 block">Mesajınız *</label>
                 <div className="relative">
                   <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                   <textarea
@@ -239,7 +239,7 @@ const ContactPage = () => {
                     onChange={handleChange}
                     placeholder="Mesajınızı buraya yazın..."
                     rows={5}
-                    className="w-full bg-[#242426] border border-white/5 rounded-xl py-4 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#d3f26a]/50 transition-colors resize-none"
+                    className="w-full bg-white border border-gray-300 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600 transition-colors resize-none"
                     required
                   />
                 </div>
@@ -248,7 +248,7 @@ const ContactPage = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-[#d3f26a] hover:bg-[#c5e45c] text-black py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
               >
                 <Send className="w-5 h-5" />
                 Mesaj Gönder
@@ -259,7 +259,7 @@ const ContactPage = () => {
           {/* Right - Map & Info */}
           <div className="space-y-6">
             {/* Map Placeholder */}
-            <div className="bg-[#242426] rounded-3xl overflow-hidden h-96">
+            <div className="bg-gray-50 border border-gray-200 rounded-3xl overflow-hidden h-96">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.5!2d29.0!3d41.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDAwJzAwLjAiTiAyOcKwMDAnMDAuMCJF!5e0!3m2!1str!2str!4v1234567890"
                 width="100%"
@@ -273,8 +273,8 @@ const ContactPage = () => {
             </div>
 
             {/* Additional Info */}
-            <div className="bg-gradient-to-r from-[#d3f26a]/10 to-[#ad7bff]/10 rounded-3xl p-8 border border-white/5">
-              <h3 className="text-2xl font-bold text-white mb-6">
+            <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-3xl p-8 border border-red-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Neden Bizi Seçmelisiniz?
               </h3>
               <ul className="space-y-4">
@@ -287,25 +287,25 @@ const ContactPage = () => {
                   "Detaylı Raporlama"
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-[#d3f26a] flex items-center justify-center flex-shrink-0">
-                      <span className="text-black font-bold text-xs">✓</span>
+                    <div className="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-bold text-xs">✓</span>
                     </div>
-                    <span className="text-gray-300">{item}</span>
+                    <span className="text-gray-700">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Quick Contact */}
-            <div className="bg-[#242426] rounded-3xl p-8">
-              <h3 className="text-xl font-bold text-white mb-4">Hızlı İletişim</h3>
-              <p className="text-gray-400 mb-6">
+            <div className="bg-gray-50 border border-gray-200 rounded-3xl p-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Hızlı İletişim</h3>
+              <p className="text-gray-600 mb-6">
                 Acil durumlar için bizi doğrudan arayabilir veya WhatsApp üzerinden ulaşabilirsiniz.
               </p>
               <div className="flex flex-col gap-3">
                 <a
                   href="tel:+905542290101"
-                  className="flex items-center gap-3 bg-[#d3f26a] hover:bg-[#c5e45c] text-black px-6 py-3 rounded-xl font-semibold transition-all justify-center"
+                  className="flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all justify-center"
                 >
                   <Phone className="w-5 h-5" />
                   Hemen Ara

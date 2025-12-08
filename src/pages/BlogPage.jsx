@@ -96,18 +96,18 @@ const BlogPage = () => {
   const featuredPost = blogPosts.find(post => post.featured);
 
   return (
-    <section className="bg-[#171719] py-20 px-6 min-h-screen">
+    <section className="bg-white py-20 px-6 min-h-screen">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-[#d3f26a] text-sm font-semibold tracking-wider uppercase">
+          <span className="text-red-600 text-sm font-semibold tracking-wider uppercase">
             Blog
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-4">
             Güncel Haberler & İçerikler
           </h1>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 mt-6 max-w-2xl mx-auto text-lg">
             Influencer pazarlama, trendler, vaka çalışmaları ve sektörden en güncel haberler
           </p>
         </div>
@@ -121,7 +121,7 @@ const BlogPage = () => {
               placeholder="Blog yazılarında ara..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#242426] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#d3f26a]/50 transition-colors"
+              className="w-full bg-gray-50 border border-gray-300 rounded-2xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600 transition-colors"
             />
           </div>
         </div>
@@ -134,8 +134,8 @@ const BlogPage = () => {
               onClick={() => setActiveCategory(category.id)}
               className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${
                 activeCategory === category.id
-                  ? 'bg-[#d3f26a] text-black'
-                  : 'bg-[#242426] text-gray-400 hover:bg-[#2a2a2c] hover:text-white'
+                  ? 'bg-red-600 text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-300'
               }`}
             >
               {category.label}
@@ -146,7 +146,7 @@ const BlogPage = () => {
         {/* Featured Post */}
         {featuredPost && activeCategory === 'all' && !searchQuery && (
           <div className="mb-16">
-            <div className="bg-[#242426] rounded-3xl overflow-hidden">
+            <div className="bg-gray-50 border border-gray-200 rounded-3xl overflow-hidden">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="relative h-64 md:h-auto">
                   <img
@@ -155,13 +155,13 @@ const BlogPage = () => {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-[#d3f26a] text-black px-3 py-1 rounded-full text-xs font-semibold">
+                    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
                       Öne Çıkan
                     </span>
                   </div>
                 </div>
-                <div className="p-8 md:p-12 flex flex-col justify-center">
-                  <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                <div className="p-8 md:p-12 flex flex-col justify-center bg-white">
+                  <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
                       <span>{featuredPost.date}</span>
@@ -171,23 +171,23 @@ const BlogPage = () => {
                       <span>{featuredPost.readTime}</span>
                     </div>
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                     {featuredPost.title}
                   </h2>
-                  <p className="text-gray-400 mb-6 leading-relaxed">
+                  <p className="text-gray-600 mb-6 leading-relaxed">
                     {featuredPost.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#d3f26a]/20 flex items-center justify-center">
-                        <User className="w-5 h-5 text-[#d3f26a]" />
+                      <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                        <User className="w-5 h-5 text-red-600" />
                       </div>
                       <div>
-                        <div className="text-white font-medium">{featuredPost.author}</div>
-                        <div className="text-gray-500 text-sm">Yazar</div>
+                        <div className="text-gray-900 font-medium">{featuredPost.author}</div>
+                        <div className="text-gray-600 text-sm">Yazar</div>
                       </div>
                     </div>
-                    <button className="flex items-center gap-2 text-[#d3f26a] hover:text-[#c5e45c] transition-colors font-semibold">
+                    <button className="flex items-center gap-2 text-red-600 hover:text-red-700 transition-colors font-semibold">
                       Devamını Oku
                       <ArrowRight className="w-5 h-5" />
                     </button>
@@ -205,7 +205,7 @@ const BlogPage = () => {
             .map((post) => (
             <article
               key={post.id}
-              className="bg-[#242426] rounded-3xl overflow-hidden hover:bg-[#2a2a2c] transition-all group cursor-pointer"
+              className="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:bg-red-50 hover:border-red-200 transition-all group cursor-pointer shadow-sm"
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
@@ -215,7 +215,7 @@ const BlogPage = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-[#ad7bff] text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
                     {categories.find(c => c.id === post.category)?.label}
                   </span>
                 </div>
@@ -223,7 +223,7 @@ const BlogPage = () => {
 
               {/* Content */}
               <div className="p-6">
-                <div className="flex items-center gap-4 mb-3 text-xs text-gray-500">
+                <div className="flex items-center gap-4 mb-3 text-xs text-gray-600">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     <span>{post.date}</span>
@@ -234,20 +234,20 @@ const BlogPage = () => {
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#d3f26a] transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
                   {post.title}
                 </h3>
                 
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-2">
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
                   {post.excerpt}
                 </p>
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <User className="w-4 h-4 text-gray-500" />
-                    <span className="text-gray-500 text-sm">{post.author}</span>
+                    <span className="text-gray-600 text-sm">{post.author}</span>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-500 group-hover:text-[#d3f26a] group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-5 h-5 text-gray-500 group-hover:text-red-600 group-hover:translate-x-1 transition-all" />
                 </div>
               </div>
             </article>
@@ -257,25 +257,25 @@ const BlogPage = () => {
         {/* Empty State */}
         {filteredPosts.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-gray-500 text-lg">Aradığınız kriterlere uygun blog yazısı bulunamadı.</p>
+            <p className="text-gray-600 text-lg">Aradığınız kriterlere uygun blog yazısı bulunamadı.</p>
           </div>
         )}
 
         {/* Newsletter CTA */}
-        <div className="mt-20 bg-gradient-to-r from-[#d3f26a]/10 to-[#ad7bff]/10 rounded-3xl p-12 text-center border border-white/5">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+        <div className="mt-20 bg-gradient-to-r from-red-50 to-red-100 rounded-3xl p-12 text-center border border-red-200">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
             Blog Yazılarımızdan Haberdar Olun
           </h3>
-          <p className="text-gray-400 max-w-xl mx-auto mb-8">
+          <p className="text-gray-700 max-w-xl mx-auto mb-8">
             Yeni blog yazılarımız ve güncel içeriklerimizden haberdar olmak için e-bültenimize abone olun.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <input
               type="email"
               placeholder="E-posta adresiniz"
-              className="flex-1 bg-[#242426] border border-white/5 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#d3f26a]/50"
+              className="flex-1 bg-white border border-gray-300 rounded-xl py-3 px-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600"
             />
-            <button className="bg-[#d3f26a] hover:bg-[#c5e45c] text-black px-6 py-3 rounded-xl font-semibold transition-all">
+            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all">
               Abone Ol
             </button>
           </div>

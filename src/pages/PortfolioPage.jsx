@@ -139,18 +139,18 @@ const PortfolioPage = () => {
   ];
 
   return (
-    <section className="bg-[#171719] py-20 px-6 min-h-screen">
+    <section className="bg-white py-20 px-6 min-h-screen">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-[#ad7bff] text-sm font-semibold tracking-wider uppercase">
+          <span className="text-red-600 text-sm font-semibold tracking-wider uppercase">
             Portföyümüz
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mt-4">
             Influencer Portföyü
           </h1>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 mt-6 max-w-2xl mx-auto text-lg">
             Türkiye'nin dört bir yanından, farklı kategorilerde binlerce influencer ile 
             markanızı büyütün. Doğru influencer'ı seçmenize yardımcı oluyoruz.
           </p>
@@ -161,10 +161,10 @@ const PortfolioPage = () => {
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <div key={index} className="bg-[#242426] rounded-2xl p-6 text-center">
-                <IconComponent className="w-8 h-8 text-[#d3f26a] mx-auto mb-3" />
-                <div className="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
-                <div className="text-gray-500 text-sm">{stat.label}</div>
+              <div key={index} className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center">
+                <IconComponent className="w-8 h-8 text-red-600 mx-auto mb-3" />
+                <div className="text-2xl md:text-3xl font-bold text-gray-900">{stat.value}</div>
+                <div className="text-gray-600 text-sm">{stat.label}</div>
               </div>
             );
           })}
@@ -178,8 +178,8 @@ const PortfolioPage = () => {
               onClick={() => setActiveFilter(filter.id)}
               className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${
                 activeFilter === filter.id
-                  ? 'bg-[#d3f26a] text-black'
-                  : 'bg-[#242426] text-gray-400 hover:bg-[#2a2a2c] hover:text-white'
+                  ? 'bg-red-600 text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-300'
               }`}
             >
               {filter.label}
@@ -192,7 +192,7 @@ const PortfolioPage = () => {
           {filteredInfluencers.map((influencer, index) => (
             <div 
               key={index}
-              className="group relative rounded-3xl overflow-hidden cursor-pointer bg-[#242426]"
+              className="group relative rounded-3xl overflow-hidden cursor-pointer bg-white border border-gray-200 shadow-sm hover:shadow-xl transition-all"
             >
               {/* Image */}
               <div className="aspect-[3/4] overflow-hidden">
@@ -208,7 +208,7 @@ const PortfolioPage = () => {
               
               {/* Platform Badge */}
               <div className="absolute top-4 right-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
                   {influencer.platform === 'instagram' && <Instagram className="w-5 h-5 text-white" />}
                   {influencer.platform === 'youtube' && <Youtube className="w-5 h-5 text-white" />}
                   {influencer.platform === 'twitter' && <Twitter className="w-5 h-5 text-white" />}
@@ -218,47 +218,47 @@ const PortfolioPage = () => {
               {/* Content */}
               <div className="absolute inset-x-0 bottom-0 p-4">
                 <h3 className="text-white font-semibold text-lg">{influencer.name}</h3>
-                <p className="text-gray-400 text-sm mb-3">{influencer.category}</p>
+                <p className="text-gray-300 text-sm mb-3">{influencer.category}</p>
                 
                 {/* Stats */}
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4 text-[#d3f26a]" />
+                    <Users className="w-4 h-4 text-red-400" />
                     <span className="text-white text-sm font-medium">{influencer.followers}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Heart className="w-4 h-4 text-[#ff7bb8]" />
+                    <Heart className="w-4 h-4 text-red-400" />
                     <span className="text-white text-sm font-medium">{influencer.engagement}</span>
                   </div>
                 </div>
               </div>
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-[#d3f26a]/0 group-hover:bg-[#d3f26a]/10 transition-all duration-300" />
+              <div className="absolute inset-0 bg-red-600/0 group-hover:bg-red-600/10 transition-all duration-300" />
             </div>
           ))}
         </div>
 
         {/* Load More / CTA */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-[#ad7bff]/20 to-[#d3f26a]/20 rounded-3xl p-12 border border-white/5">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-3xl p-12 border border-red-200">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
               Aradığınız Influencer'ı Bulamadınız mı?
             </h3>
-            <p className="text-gray-400 max-w-xl mx-auto mb-8">
+            <p className="text-gray-700 max-w-xl mx-auto mb-8">
               13.000'den fazla influencer veritabanımızda markanıza en uygun kişileri 
               sizin için buluyoruz. Hemen bizimle iletişime geçin.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/iletisim"
-                className="inline-flex items-center justify-center gap-2 bg-[#d3f26a] hover:bg-[#c5e45c] text-black px-8 py-4 rounded-2xl font-semibold transition-all hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all hover:scale-105"
               >
                 Bize Ulaşın
               </a>
               <a 
                 href="tel:+905542290101"
-                className="inline-flex items-center justify-center gap-2 bg-[#242426] hover:bg-[#2a2a2c] text-white px-8 py-4 rounded-2xl font-semibold transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-2xl font-semibold transition-all"
               >
                 +90 554 229 0101
               </a>

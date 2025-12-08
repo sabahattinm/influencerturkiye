@@ -22,15 +22,11 @@ const HomePage = () => {
       {/* Services Section */}
       <ServicesSection />
       
-      {/* Micro Influencer Strategy */}
-      <MicroInfluencerSection />
+ 
       
       {/* Statistics */}
       <StatsSection />
       
-  
-      {/* Testimonials */}
-      <TestimonialsSection />
       
       {/* Contact */}
       <ContactSection />

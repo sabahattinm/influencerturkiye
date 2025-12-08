@@ -4,6 +4,7 @@ import InfluencerCard from './InfluencerCard';
 
 /**
  * CardGrid Component - Türkçe
+ * Kırmızı-Beyaz Tema
  */
 const CardGrid = () => {
   const influencers = [
@@ -28,7 +29,7 @@ const CardGrid = () => {
   ];
 
   return (
-    <section className="bg-[#171719] px-6 pb-12">
+    <section className="bg-white px-6 pb-12">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           
@@ -48,10 +49,10 @@ const CardGrid = () => {
             className="aspect-[3/4]"
           />
 
-          {/* Show All Card - Purple (Clickable Link to Portfolio Page) */}
+          {/* Show All Card - Red (Clickable Link to Portfolio Page) */}
           <Link 
             to="/portfolyo"
-            className="bg-[#ad7bff] rounded-3xl p-6 flex flex-col aspect-[3/4] transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#ad7bff]/20 group"
+            className="bg-red-600 hover:bg-red-700 rounded-3xl p-6 flex flex-col aspect-[3/4] transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-600/20 group"
           >
             {/* Arrow icon */}
             <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-auto group-hover:bg-white/30 transition-colors">
@@ -63,7 +64,7 @@ const CardGrid = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-1">
                 Tümünü Gör
               </h3>
-              <p className="text-white/70 text-sm">
+              <p className="text-white/90 text-sm">
                 13 150 influencer
               </p>
             </div>

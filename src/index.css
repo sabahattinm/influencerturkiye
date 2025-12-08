@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* Custom CSS Variables for the design system */
+:root {
+  --bg-dark: #171719;
+  --accent-lime: #d3f26a;
+  --accent-purple: #ad7bff;
+  --off-white: #f2f4f0;
+}
+
+/* Apply Poppins font globally */
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--off-white);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #242426;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a4a4d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5d;
+}

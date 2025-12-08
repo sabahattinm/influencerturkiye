@@ -1,16 +1,83 @@
-# React + Vite
+# Influencer Türkiye - Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Türkiye'nin en kapsamlı influencer marketing platformu için modern ve responsive landing page.
 
-Currently, two official plugins are available:
+## 🚀 Teknolojiler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** - UI framework
+- **Vite 7** - Build tool ve dev server
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **React Router DOM** - Sayfa yönlendirme
+- **Lucide React** - Icon library
+- **Framer Motion** - Animasyonlar
 
-## React Compiler
+## 📁 Proje Yapısı
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+influencer-landing/
+├── src/
+│   ├── components/      # Reusable components
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── HeroSection.jsx
+│   │   └── ...
+│   ├── pages/          # Page components
+│   │   ├── HomePage.jsx
+│   │   ├── HowWeWorkPage.jsx
+│   │   ├── PortfolioPage.jsx
+│   │   ├── BlogPage.jsx
+│   │   └── ContactPage.jsx
+│   ├── App.jsx         # Main app component
+│   └── main.jsx        # Entry point
+├── public/             # Static assets
+└── package.json
+```
 
-## Expanding the ESLint configuration
+## 🎨 Sayfalar
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Ana Sayfa** (`/`) - Hero, hizmetler, istatistikler, portföy özeti
+- **Nasıl Çalışıyoruz** (`/nasil-calisiyoruz`) - 6 adımlı süreç timeline
+- **Portföy** (`/portfolyo`) - Influencer portföyü ve filtreleme
+- **Blog** (`/blog`) - Blog yazıları ve kategoriler
+- **İletişim** (`/iletisim`) - İletişim formu ve bilgileri
+
+## 🛠️ Kurulum
+
+```bash
+# Bağımlılıkları yükle
+npm install
+
+# Development server'ı başlat
+npm run dev
+
+# Production build
+npm run build
+
+# Build önizleme
+npm run preview
+```
+
+## 🎯 Özellikler
+
+- ✅ Responsive tasarım (mobil, tablet, desktop)
+- ✅ React Router ile sayfa yönlendirme
+- ✅ Modern UI/UX tasarımı
+- ✅ Tailwind CSS ile styling
+- ✅ Smooth scroll ve animasyonlar
+- ✅ SEO optimizasyonu
+- ✅ Türkçe içerik
+
+## 📝 Renk Paleti
+
+- **Background Dark**: `#171719`
+- **Accent Lime**: `#d3f26a`
+- **Accent Purple**: `#ad7bff`
+- **Off White**: `#f2f4f0`
+
+## 📄 Lisans
+
+Bu proje özel bir projedir.
+
+## 👥 Geliştirici
+
+Influencer Türkiye - Power1 Company

@@ -1,19 +1,32 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import WhatsAppButton from './components/WhatsAppButton';
-import HomePage from './pages/HomePage';
-import HowWeWorkPage from './pages/HowWeWorkPage';
-import PortfolioPage from './pages/PortfolioPage';
-import BlogPage from './pages/BlogPage';
-import ContactPage from './pages/ContactPage';
-import ApplicationPage from './pages/ApplicationPage';
-import KVKKPage from './pages/KVKKPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
+
+// Lazy load pages for better performance
+const HomePage = lazy(() => import('./pages/HomePage'));
+const HowWeWorkPage = lazy(() => import('./pages/HowWeWorkPage'));
+const PortfolioPage = lazy(() => import('./pages/PortfolioPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const ApplicationPage = lazy(() => import('./pages/ApplicationPage'));
+const KVKKPage = lazy(() => import('./pages/KVKKPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
+
+// Loading component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="text-center">
+      <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-gray-600">Yükleniyor...</p>
+    </div>
+  </div>
+);
 
 /**
  * WhatsApp Button Wrapper - Sadece auth sayfalarında gizle
@@ -44,27 +57,29 @@ function App() {
           </Routes>
           
           {/* Routes */}
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/nasil-calisiyoruz" element={<HowWeWorkPage />} />
-            <Route 
-              path="/portfolyo" 
-              element={
-                <ProtectedRoute>
-                  <PortfolioPage />
-                </ProtectedRoute>
-              } 
-            />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/iletisim" element={<ContactPage />} />
-            <Route path="/basvuru" element={<ApplicationPage />} />
-            <Route path="/kvkk" element={<KVKKPage />} />
-            
-            {/* Auth Routes */}
-            <Route path="/auth/login" element={<LoginPage />} />
-            <Route path="/auth/register" element={<RegisterPage />} />
-            <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/nasil-calisiyoruz" element={<HowWeWorkPage />} />
+              <Route 
+                path="/portfolyo" 
+                element={
+                  <ProtectedRoute>
+                    <PortfolioPage />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/iletisim" element={<ContactPage />} />
+              <Route path="/basvuru" element={<ApplicationPage />} />
+              <Route path="/kvkk" element={<KVKKPage />} />
+              
+              {/* Auth Routes */}
+              <Route path="/auth/login" element={<LoginPage />} />
+              <Route path="/auth/register" element={<RegisterPage />} />
+              <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
+            </Routes>
+          </Suspense>
           
           {/* Footer - Tüm sayfalarda görünür (auth sayfaları hariç) */}
           <Routes>

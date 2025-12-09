@@ -16,6 +16,9 @@ export const saveInfluencerApplication = async (formData) => {
   }
 
   try {
+    // Mevcut kullanıcının ID'sini al
+    const { data: { user } } = await supabase.auth.getUser();
+    
     const { data, error } = await supabase
       .from(APPLICATION_TABLE)
       .insert([
@@ -35,6 +38,7 @@ export const saveInfluencerApplication = async (formData) => {
           blog_url: formData.blog || null,
           other_social_media: formData.other || null,
           budget_per_share: parseFloat(formData.budget) || 0, // Sayısal alana dönüştürülmeli
+          user_id: user?.id || null, // Authenticated kullanıcının ID'si
         }
       ])
       .select()
@@ -64,6 +68,9 @@ export const saveCustomerApplication = async (formData) => {
   }
 
   try {
+    // Mevcut kullanıcının ID'sini al
+    const { data: { user } } = await supabase.auth.getUser();
+    
     const { data, error } = await supabase
       .from(CUSTOMER_APPLICATION_TABLE)
       .insert([
@@ -75,6 +82,7 @@ export const saveCustomerApplication = async (formData) => {
           platform: formData.platform,
           content_type: formData.contentType,
           description: formData.description,
+          user_id: user?.id || null, // Authenticated kullanıcının ID'si
         }
       ])
       .select()

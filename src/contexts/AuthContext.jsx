@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useMemo, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email, password) => {
+  const signUp = useCallback(async (email, password) => {
     if (!supabase) {
       return { data: null, error: new Error('Supabase is not configured') };
     }
@@ -72,9 +72,9 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return { data: null, error };
     }
-  };
+  }, []);
 
-  const signIn = async (email, password) => {
+  const signIn = useCallback(async (email, password) => {
     if (!supabase) {
       return { data: null, error: new Error('Supabase is not configured') };
     }
@@ -99,9 +99,9 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return { data: null, error };
     }
-  };
+  }, []);
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     if (!supabase) {
       console.error('Supabase is not configured');
       return;
@@ -114,9 +114,9 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error('Sign out error:', error);
     }
-  };
+  }, [navigate]);
 
-  const resetPassword = async (email) => {
+  const resetPassword = useCallback(async (email) => {
     if (!supabase) {
       return { data: null, error: new Error('Supabase is not configured') };
     }
@@ -131,9 +131,9 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return { data: null, error };
     }
-  };
+  }, []);
 
-  const value = {
+  const value = useMemo(() => ({
     user,
     session,
     loading,
@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }) => {
     signOut,
     resetPassword,
     isAuthenticated: !!user,
-  };
+  }), [user, session, loading, signUp, signIn, signOut, resetPassword]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

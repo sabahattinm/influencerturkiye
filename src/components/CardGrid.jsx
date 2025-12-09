@@ -1,9 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useMemo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
 import InfluencerCard from './InfluencerCard';
+
+// Dynamic import for Swiper (lazy load)
+let Swiper, SwiperSlide, Autoplay;
 
 // Import influencer images
 import zeyZorImage from '../assets/zey_zor.webp';
@@ -13,17 +14,30 @@ import boncuksaraImage from '../assets/boncuksara.webp';
 import drIlaydasimaygulImage from '../assets/dr_ilaydasimaygul.webp';
 import senasuraeerrImage from '../assets/senasuraeerr.webp';
 
-// Import Swiper styles
-import 'swiper/css';
-
 /**
  * CardGrid Component - Slider with Influencer Cards
  * InfluencerCard component'i üzerinden temiz slider tasarımı
  */
 const CardGrid = () => {
   const swiperRef = useRef(null);
+  const [swiperLoaded, setSwiperLoaded] = useState(false);
 
-  const influencers = [
+  // Lazy load Swiper
+  useEffect(() => {
+    Promise.all([
+      import('swiper/react'),
+      import('swiper/modules'),
+      import('swiper/css')
+    ]).then(([swiperReact, swiperModules, swiperCss]) => {
+      Swiper = swiperReact.Swiper;
+      SwiperSlide = swiperReact.SwiperSlide;
+      Autoplay = swiperModules.Autoplay;
+      setSwiperLoaded(true);
+    });
+  }, []);
+
+  // Memoize influencers array to prevent unnecessary re-renders
+  const influencers = useMemo(() => [
     {
       id: 1,
       image: zeyZorImage,
@@ -72,7 +86,22 @@ const CardGrid = () => {
       engagementRate: "%3",
       followers: 354000
     }
-  ];
+  ], []);
+
+  // Loading state while Swiper loads
+  if (!swiperLoaded || !Swiper || !SwiperSlide) {
+    return (
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {influencers.map((influencer) => (
+              <div key={influencer.id} className="aspect-[3/4] bg-gray-200 animate-pulse rounded-3xl" />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-white py-16">
@@ -82,7 +111,7 @@ const CardGrid = () => {
           spaceBetween={20}
           slidesPerView={2}
           autoplay={{
-            delay: 3000,
+            delay: 2000,
             disableOnInteraction: false,
           }}
           loop={false}
@@ -95,7 +124,7 @@ const CardGrid = () => {
             if (swiper.activeIndex === 6) {
               setTimeout(() => {
                 swiper.slideTo(0, 500); // 500ms hızlı geçiş ile başa dön
-              }, 3000); // 3 saniye gösterdikten sonra başa dön
+              }, 2000); // 3 saniye gösterdikten sonra başa dön
             }
           }}
           breakpoints={{

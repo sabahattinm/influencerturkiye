@@ -18,5 +18,29 @@ export default defineConfig({
     ],
     // Veya tüm host'lara izin ver (development için)
     // allowedHosts: 'all'
-  }
+  },
+  build: {
+    // Code splitting optimizasyonu
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor chunks
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'supabase-vendor': ['@supabase/supabase-js'],
+          'ui-vendor': ['framer-motion', 'lucide-react'],
+          'swiper-vendor': ['swiper'],
+        },
+      },
+    },
+    // Chunk size uyarı limiti
+    chunkSizeWarningLimit: 1000,
+    // Minification
+    minify: 'esbuild',
+    // Source maps (production'da kapalı, daha hızlı build)
+    sourcemap: false,
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', '@supabase/supabase-js'],
+  },
 })

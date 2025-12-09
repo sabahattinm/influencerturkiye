@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react';
 import { Instagram } from 'lucide-react';
 
 /**
@@ -12,7 +13,7 @@ import { Instagram } from 'lucide-react';
  * @param {string} alt - Alt text for the image
  * @param {string} className - Additional CSS classes
  */
-const InfluencerCard = ({ 
+const InfluencerCard = memo(({ 
   image, 
   name, 
   instagramUrl, 
@@ -21,22 +22,21 @@ const InfluencerCard = ({
   alt = "Influencer", 
   className = "" 
 }) => {
-  // Format follower count
-  const formatFollowers = (count) => {
-    if (!count) return null;
-    if (typeof count === 'string') return count;
-    if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
-    if (count >= 1000) return `${(count / 1000).toFixed(0)}K`;
-    return count.toString();
-  };
-
-  const formattedFollowers = formatFollowers(followers);
+  // Format follower count - memoized
+  const formattedFollowers = useMemo(() => {
+    if (!followers) return null;
+    if (typeof followers === 'string') return followers;
+    if (followers >= 1000000) return `${(followers / 1000000).toFixed(1)}M`;
+    if (followers >= 1000) return `${(followers / 1000).toFixed(0)}K`;
+    return followers.toString();
+  }, [followers]);
 
   return (
     <div className={`relative overflow-hidden rounded-3xl group ${className}`}>
       <img
         src={image}
         alt={alt}
+        loading="lazy"
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
       {/* Gradient overlay */}
@@ -91,7 +91,9 @@ const InfluencerCard = ({
       </div>
     </div>
   );
-};
+});
+
+InfluencerCard.displayName = 'InfluencerCard';
 
 export default InfluencerCard;
 

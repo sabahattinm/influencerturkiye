@@ -24,7 +24,7 @@ const ContactPage = () => {
       title: "E-posta",
       content: "hello@influencerturkiye.com",
       color: "#B91C1C",
-      link: "mailto:info@influencerturkiye.com"
+      link: "mailto:hello@influencerturkiye.com"
     },
     {
       icon: Clock,

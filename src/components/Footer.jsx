@@ -66,11 +66,11 @@ const Footer = () => {
                 <span>0542 212 53 95</span>
               </a>
               <a 
-                href="mailto:info@influencerturkiye.com"
+                href="mailto:hello@influencerturkiye.com"
                 className="flex items-center gap-3 text-gray-600 hover:text-red-600 transition-colors text-sm"
               >
                 <Mail className="w-4 h-4" />
-                <span>info@influencerturkiye.com</span>
+                <span>hello@influencerturkiye.com</span>
               </a>
             </div>
 

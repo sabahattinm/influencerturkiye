@@ -146,8 +146,8 @@ const KVKKPage = () => {
             </p>
             <p>
               <strong>E-posta:</strong>{' '}
-              <a href="mailto:info@influencerturkiye.com" className="text-red-600 hover:text-red-700">
-                info@influencerturkiye.com
+              <a href="mailto:hello@influencerturkiye.com" className="text-red-600 hover:text-red-700">
+                hello@influencerturkiye.com
               </a>
             </p>
           </div>

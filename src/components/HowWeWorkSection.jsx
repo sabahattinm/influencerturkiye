@@ -109,42 +109,7 @@ const HowWeWorkSection = () => {
         </div>
 
         {/* Micro Influencer Intro Box */}
-        <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-3xl p-8 md:p-12 mb-20 border border-red-200">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 rounded-full text-red-600 text-sm font-medium mb-4">
-                <Users className="w-4 h-4" />
-                Micro Influencer Nedir?
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                Güvenilir Kaynak, Gerçek Etki
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
-                Kendi kategorilerinin dışına çıkmayan, gerçekten bilgili ve tutkulu, önerileri güvenilir 
-                kaynak olarak görülen kişilere micro-influencer denir. 10.000 - 100.000 takipçili bu 
-                influencer'lar, büyük ünlülerden çok daha hedefli ve ekonomik çözümler sunar.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center">
-                <div className="text-3xl font-bold text-red-600">10K-100K</div>
-                <div className="text-gray-600 text-sm mt-1">Takipçi Aralığı</div>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center">
-                <div className="text-3xl font-bold text-red-600">%8-15</div>
-                <div className="text-gray-600 text-sm mt-1">Etkileşim Oranı</div>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center">
-                <div className="text-3xl font-bold text-red-600">81</div>
-                <div className="text-gray-600 text-sm mt-1">İl Kapsama</div>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center">
-                <div className="text-3xl font-bold text-red-600">13K+</div>
-                <div className="text-gray-600 text-sm mt-1">Influencer</div>
-              </div>
-            </div>
-          </div>
-        </div>
+       
 
         {/* Vertical Timeline - 6 Steps */}
         <div className="mb-20">

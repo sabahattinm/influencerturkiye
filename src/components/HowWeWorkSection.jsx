@@ -303,22 +303,22 @@ const HowWeWorkSection = () => {
           </h3>
           <p className="text-white/90 max-w-2xl mx-auto mb-8">
             Ücretsiz danışmanlık ile markanıza en uygun influencer stratejisini birlikte oluşturalım. 
-            Hemen iletişime geçin, size özel teklif hazırlayalım.
+            Hemen başvuru yapın, size özel teklif hazırlayalım.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              to="/iletisim"
+              to="/basvuru"
               className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-red-600 px-8 py-4 rounded-2xl font-semibold transition-all hover:scale-105"
             >
               <Zap className="w-5 h-5" />
-              Teklif Al
+              Başvuru Yap
             </Link>
             <a 
-              href="tel:+905542290101"
+              href="tel:+905422125395"
               className="inline-flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 text-white px-8 py-4 rounded-2xl font-semibold transition-all"
             >
               <Phone className="w-5 h-5" />
-              +90 554 229 0101
+              0542 212 53 95
             </a>
           </div>
         </div>

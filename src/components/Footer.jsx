@@ -1,4 +1,4 @@
-import { Instagram, Twitter, Linkedin, Youtube, Mail, ArrowRight } from 'lucide-react';
+import { Instagram, Twitter, Linkedin, Youtube, Mail, ArrowRight, Phone } from 'lucide-react';
 
 /**
  * Footer Component
@@ -56,6 +56,24 @@ const Footer = () => {
               bir araya getiriyoruz.
             </p>
 
+            {/* Contact Info */}
+            <div className="space-y-3 mb-6">
+              <a 
+                href="tel:+905422125395"
+                className="flex items-center gap-3 text-gray-600 hover:text-red-600 transition-colors text-sm"
+              >
+                <Phone className="w-4 h-4" />
+                <span>0542 212 53 95</span>
+              </a>
+              <a 
+                href="mailto:info@influencerturkiye.com"
+                className="flex items-center gap-3 text-gray-600 hover:text-red-600 transition-colors text-sm"
+              >
+                <Mail className="w-4 h-4" />
+                <span>info@influencerturkiye.com</span>
+              </a>
+            </div>
+
             {/* Social Links */}
             <div className="flex gap-3">
               {socialLinks.map((social, index) => {
@@ -91,29 +109,7 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Section */}
-        <div className="py-12 border-b border-gray-200">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <h4 className="text-gray-900 font-semibold text-lg">E-Bülten</h4>
-              <p className="text-gray-600 text-sm mt-1">
-                Mailinize E-Bülten göndermemizi ister misiniz?
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                <input
-                  type="email"
-                  placeholder="E-posta adresiniz"
-                  className="bg-white border border-gray-300 rounded-xl py-3 pl-12 pr-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600 w-64"
-                />
-              </div>
-              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all">
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-        </div>
+       
 
         {/* Bottom Section */}
         <div className="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

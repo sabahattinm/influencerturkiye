@@ -25,6 +25,11 @@ const HeroSection = () => {
     navigate('/iletisim');
   };
 
+  // Navigate to Application page
+  const goToApplication = () => {
+    navigate('/basvuru');
+  };
+
   return (
     <section className="bg-white min-h-screen flex items-center px-6 py-12 lg:py-20">
       <div className="max-w-7xl mx-auto w-full">
@@ -65,13 +70,20 @@ const HeroSection = () => {
               <div className="text-gray-900 font-bold mt-2 sm:mt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">keşfet</div>
             </h1>
 
-            {/* CTA Button */}
-            <div className="mt-8 sm:mt-10 md:mt-12">
+            {/* CTA Buttons */}
+            <div className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row gap-4">
               <button
-                onClick={goToContact}
+                onClick={goToApplication}
                 className="group inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 sm:px-10 sm:py-5 rounded-2xl font-semibold text-lg sm:text-xl transition-all hover:scale-105 hover:shadow-2xl hover:shadow-red-600/30"
               >
-                Hemen Teklif Al
+                Başvuru Yap
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={goToContact}
+                className="group inline-flex items-center gap-3 bg-white border-2 border-red-600 hover:bg-red-50 text-red-600 px-8 py-4 sm:px-10 sm:py-5 rounded-2xl font-semibold text-lg sm:text-xl transition-all hover:scale-105"
+              >
+                İletişime Geç
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>

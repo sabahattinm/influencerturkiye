@@ -19,6 +19,13 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Supabase yapılandırılmamışsa hata ver
+    if (!supabase) {
+      console.error('Supabase is not configured. Please set environment variables.');
+      setLoading(false);
+      return;
+    }
+
     // Mevcut session'ı kontrol et
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -39,6 +46,10 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const signUp = async (email, password) => {
+    if (!supabase) {
+      return { data: null, error: new Error('Supabase is not configured') };
+    }
+    
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -49,6 +60,14 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (error) throw error;
+      
+      // Eğer session varsa (email doğrulama kapalıysa) state'i güncelle
+      if (data.session) {
+        setSession(data.session);
+        setUser(data.session.user);
+        setLoading(false);
+      }
+      
       return { data, error: null };
     } catch (error) {
       return { data: null, error };
@@ -56,6 +75,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signIn = async (email, password) => {
+    if (!supabase) {
+      return { data: null, error: new Error('Supabase is not configured') };
+    }
+    
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -63,6 +86,15 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (error) throw error;
+      
+      // Auth state'i hemen güncelle - onAuthStateChange listener'dan önce
+      // Bu race condition'ı önler
+      if (data.session) {
+        setSession(data.session);
+        setUser(data.session.user);
+        setLoading(false);
+      }
+      
       return { data, error: null };
     } catch (error) {
       return { data: null, error };
@@ -70,6 +102,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signOut = async () => {
+    if (!supabase) {
+      console.error('Supabase is not configured');
+      return;
+    }
+    
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
@@ -80,6 +117,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const resetPassword = async (email) => {
+    if (!supabase) {
+      return { data: null, error: new Error('Supabase is not configured') };
+    }
+    
     try {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/reset-password`,

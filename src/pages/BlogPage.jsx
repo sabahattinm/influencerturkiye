@@ -262,24 +262,7 @@ const BlogPage = () => {
         )}
 
         {/* Newsletter CTA */}
-        <div className="mt-20 bg-gradient-to-r from-red-50 to-red-100 rounded-3xl p-12 text-center border border-red-200">
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            Blog Yazılarımızdan Haberdar Olun
-          </h3>
-          <p className="text-gray-700 max-w-xl mx-auto mb-8">
-            Yeni blog yazılarımız ve güncel içeriklerimizden haberdar olmak için e-bültenimize abone olun.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="E-posta adresiniz"
-              className="flex-1 bg-white border border-gray-300 rounded-xl py-3 px-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-red-600"
-            />
-            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all">
-              Abone Ol
-            </button>
-          </div>
-        </div>
+        
 
       </div>
     </section>

@@ -9,6 +9,8 @@ import HowWeWorkPage from './pages/HowWeWorkPage';
 import PortfolioPage from './pages/PortfolioPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
+import ApplicationPage from './pages/ApplicationPage';
+import KVKKPage from './pages/KVKKPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -55,6 +57,8 @@ function App() {
             />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/iletisim" element={<ContactPage />} />
+            <Route path="/basvuru" element={<ApplicationPage />} />
+            <Route path="/kvkk" element={<KVKKPage />} />
             
             {/* Auth Routes */}
             <Route path="/auth/login" element={<LoginPage />} />

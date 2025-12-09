@@ -62,9 +62,27 @@ Bu proje Supabase Authentication kullanmaktadır. Portföy sayfasına erişmek i
 - ✅ Session management
 - ✅ Auto-refresh tokens
 
+## 5. Production Deployment
+
+**⚠️ ÖNEMLİ:** Production'a alırken environment variable'ları **mutlaka** ayarlamanız gerekiyor!
+
+Detaylı bilgi için `DEPLOYMENT.md` dosyasına bakın.
+
+### Hızlı Özet:
+1. Deployment platform'unuzda (Vercel, Netlify, vs.) Environment Variables ayarlayın
+2. `VITE_SUPABASE_URL` ve `VITE_SUPABASE_ANON_KEY` değerlerini ekleyin
+3. Build'i yeniden yapın
+4. Supabase Dashboard'da production URL'inizi Redirect URLs'e ekleyin
+
 ## Sorun Giderme
 
-### "Supabase URL ve Key bulunamadı" hatası
+### "supabaseUrl is required" hatası (Production)
+- ✅ Deployment platform'unda environment variable'ların ayarlandığını kontrol edin
+- ✅ Variable isimlerinin `VITE_` ile başladığından emin olun
+- ✅ Build'i yeniden yapın (environment variable'lar build zamanında yüklenir)
+- ✅ Detaylı bilgi için `DEPLOYMENT.md` dosyasına bakın
+
+### "Supabase URL ve Key bulunamadı" hatası (Development)
 - `.env` dosyasının proje kök dizininde olduğundan emin olun
 - Environment variable'ların `VITE_` ile başladığından emin olun
 - Development server'ı yeniden başlatın

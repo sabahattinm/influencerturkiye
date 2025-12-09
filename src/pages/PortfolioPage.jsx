@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Instagram, Youtube, Twitter, Users, Heart, MessageCircle, Eye } from 'lucide-react';
 
 /**
@@ -247,20 +248,20 @@ const PortfolioPage = () => {
             </h3>
             <p className="text-gray-700 max-w-xl mx-auto mb-8">
               13.000'den fazla influencer veritabanımızda markanıza en uygun kişileri 
-              sizin için buluyoruz. Hemen bizimle iletişime geçin.
+              sizin için buluyoruz. Hemen başvuru yapın, size özel çözümler sunalım.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/iletisim"
+              <Link 
+                to="/basvuru"
                 className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all hover:scale-105"
               >
-                Bize Ulaşın
-              </a>
+                Başvuru Yap
+              </Link>
               <a 
-                href="tel:+905542290101"
+                href="tel:+905422125395"
                 className="inline-flex items-center justify-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-2xl font-semibold transition-all"
               >
-                +90 554 229 0101
+                0542 212 53 95
               </a>
             </div>
           </div>

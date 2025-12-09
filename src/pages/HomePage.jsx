@@ -5,7 +5,6 @@ import MicroInfluencerSection from '../components/MicroInfluencerSection';
 import StatsSection from '../components/StatsSection';
 import PortfolioSection from '../components/PortfolioSection';
 import TestimonialsSection from '../components/TestimonialsSection';
-import ContactSection from '../components/ContactSection';
 
 /**
  * HomePage - Ana Sayfa
@@ -26,10 +25,6 @@ const HomePage = () => {
       
       {/* Statistics */}
       <StatsSection />
-      
-      
-      {/* Contact */}
-      <ContactSection />
     </>
   );
 };

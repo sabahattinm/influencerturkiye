@@ -34,28 +34,24 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white px-6 py-4 sticky top-0 z-50 border-b border-gray-200 shadow-sm">
+    <nav className="bg-white px-6 py-2 sticky top-0 z-50 border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Left: Logo with Text - 1:1 Aspect Ratio */}
-        <Link to="/" className="flex items-center gap-3">
+        {/* Left: Logo - 7:4 Aspect Ratio */}
+        <Link to="/" className="flex items-center">
           <div 
             className="rounded-lg flex items-center justify-center overflow-hidden"
             style={{ 
-              width: '50px',  // Genişlik
-              height: '50px', // Yükseklik (1:1 oranı)
-              aspectRatio: '1/1'
+              width: '200px',  // Genişlik
+              height: '60px', // Yükseklik (7:4 oranı)
+              aspectRatio: '7/4'
             }}
           >
             <img 
-              src="/icon.webp" 
+              src="/logo.svg" 
               alt="Influencer Türkiye Logo" 
               className="w-full h-full object-contain"
             />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-gray-900 font-bold text-lg leading-tight">INFLUENCER</span>
-            <span className="text-red-600 text-xs font-medium tracking-wider">TÜRKİYE</span>
           </div>
         </Link>
           

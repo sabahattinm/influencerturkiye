@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Phone, Send, User, MessageSquare, Building2, FileText, Instagram, Youtube, Music } from 'lucide-react';
 import { saveCustomerApplication } from '../services/dataService';
+import { initEmailJS, sendCustomerApplicationEmail } from '../services/emailService';
 
 /**
  * CustomerApplicationSection Component
@@ -19,6 +20,11 @@ const CustomerApplicationSection = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: null, message: '' });
+
+  // EmailJS'i başlat
+  useEffect(() => {
+    initEmailJS();
+  }, []);
 
   // Platform seçimine göre içerik seçenekleri
   const getContentOptions = () => {
@@ -59,6 +65,14 @@ const CustomerApplicationSection = () => {
       }
 
       await saveCustomerApplication(formData);
+      
+      // E-posta gönder (hata olsa bile form kaydı başarılı olduğu için devam et)
+      try {
+        await sendCustomerApplicationEmail(formData);
+      } catch (emailError) {
+        console.warn('E-posta gönderilemedi:', emailError);
+        // E-posta hatası form başarısını etkilemez
+      }
       
       setSubmitStatus({ 
         type: 'success', 

@@ -1,4 +1,18 @@
-import { Instagram, Twitter, Linkedin, Youtube, Mail, ArrowRight, Phone } from 'lucide-react';
+import { Instagram, Linkedin, Youtube, Mail, ArrowRight, Phone } from 'lucide-react';
+
+/**
+ * X.com Icon Component - X.com'un resmi amblemi
+ */
+const XIcon = ({ className }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    className={className}
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
 
 /**
  * Footer Component
@@ -21,10 +35,10 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Instagram, href: "#" },
-    { icon: Twitter, href: "#" },
-    { icon: Linkedin, href: "#" },
-    { icon: Youtube, href: "#" }
+    { icon: Instagram, href: "https://www.instagram.com/influencerturkiyecom/" },
+    { icon: XIcon, href: "https://x.com/influenturkiye" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/influencer-türki̇ye" }
+   
   ];
 
   return (
@@ -35,20 +49,16 @@ const Footer = () => {
           
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center mb-6">
               <div 
                 className="rounded-lg flex items-center justify-center overflow-hidden"
-                style={{ width: '50px', height: '50px', aspectRatio: '1/1' }}
+                style={{ width: '175px', height: '100px', aspectRatio: '7/4' }}
               >
                 <img 
-                  src="/icon.webp" 
+                  src="/logo.svg" 
                   alt="Influencer Türkiye Logo" 
                   className="w-full h-full object-contain"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-gray-900 font-bold text-lg">INFLUENCER</span>
-                <span className="text-red-600 text-xs font-medium tracking-wider">TÜRKİYE</span>
               </div>
             </div>
             <p className="text-gray-600 leading-relaxed mb-6 max-w-sm">
@@ -98,9 +108,9 @@ const Footer = () => {
               <ul className="space-y-3">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a href="#" className="text-gray-600 hover:text-red-600 transition-colors text-sm">
+                    <span className="text-gray-600 text-sm cursor-default">
                       {link}
-                    </a>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -117,7 +127,7 @@ const Footer = () => {
             © Influencer Türkiye - All Rights Reserved
           </p>
           <p className="text-gray-600 text-sm">
-            Designed by <span className="text-red-600">Sabo Company</span>
+            Designed by <span className="text-red-600">Company</span>
           </p>
         </div>
       </div>

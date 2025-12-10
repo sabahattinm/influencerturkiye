@@ -36,24 +36,20 @@ const ForgotPasswordPage = () => {
       <div className="max-w-md w-full">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center gap-3 mb-6">
+          <Link to="/" className="inline-flex items-center justify-center mb-6">
             <div 
               className="rounded-lg flex items-center justify-center overflow-hidden"
               style={{ 
-                width: '50px',
-                height: '50px',
-                aspectRatio: '1/1'
+                width: '210px',
+                height: '120px',
+                aspectRatio: '7/4'
               }}
             >
               <img 
-                src="/icon.webp" 
+                src="/logo.svg" 
                 alt="Influencer Türkiye Logo" 
                 className="w-full h-full object-contain"
               />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-gray-900 font-bold text-lg leading-tight">INFLUENCER</span>
-              <span className="text-red-600 text-xs font-medium tracking-wider">TÜRKİYE</span>
             </div>
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Şifremi Unuttum</h1>

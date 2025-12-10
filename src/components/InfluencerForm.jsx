@@ -1,0 +1,499 @@
+import { useState, useEffect } from 'react';
+import { 
+  User, Mail, Phone, MapPin, MessageSquare, Send, 
+  Instagram, Youtube, Facebook, Twitter, Globe, Link as LinkIcon,
+  Sparkles, TrendingUp, CheckCircle2
+} from 'lucide-react';
+import { saveInfluencerApplication } from '../services/dataService';
+import { initEmailJS, sendInfluencerApplicationEmail } from '../services/emailService';
+
+/**
+ * InfluencerForm Component
+ * Expert-level design with modern UI/UX principles
+ * Professional gradient effects, smooth animations, and intuitive layout
+ */
+const InfluencerForm = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    gender: '',
+    country: 'Türkiye',
+    city: '',
+    interests: '',
+    facebook: '',
+    youtube: '',
+    twitch: '',
+    instagram: '',
+    twitter: '',
+    blog: '',
+    other: '',
+    budget: ''
+  });
+
+  const [kvkkAccepted, setKvkkAccepted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: null, message: '' });
+
+  // EmailJS'i başlat
+  useEffect(() => {
+    initEmailJS();
+  }, []);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      if (!kvkkAccepted) {
+        setSubmitStatus({ 
+          type: 'error', 
+          message: 'Lütfen Kişisel Verilerin Korunması Kanunu\'nu onaylayınız.' 
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      const hasSocialMedia = formData.facebook || formData.youtube || formData.twitch || 
+                            formData.instagram || formData.twitter || formData.blog || formData.other;
+      
+      if (!hasSocialMedia) {
+        setSubmitStatus({ 
+          type: 'error', 
+          message: 'Lütfen en az bir sosyal medya hesabı bilgisi giriniz.' 
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      await saveInfluencerApplication(formData);
+      
+      // E-posta gönder (hata olsa bile form kaydı başarılı olduğu için devam et)
+      try {
+        await sendInfluencerApplicationEmail(formData);
+      } catch (emailError) {
+        console.warn('E-posta gönderilemedi:', emailError);
+        // E-posta hatası form başarısını etkilemez
+      }
+      
+      setSubmitStatus({ 
+        type: 'success', 
+        message: 'Başvurunuz başarıyla kaydedildi! En kısa sürede sizinle iletişime geçeceğiz.' 
+      });
+      
+      setFormData({
+        fullName: '',
+        email: '',
+        phoneNumber: '',
+        gender: '',
+        country: 'Türkiye',
+        city: '',
+        interests: '',
+        facebook: '',
+        youtube: '',
+        twitch: '',
+        instagram: '',
+        twitter: '',
+        blog: '',
+        other: '',
+        budget: ''
+      });
+      setKvkkAccepted(false);
+    } catch (error) {
+      setSubmitStatus({ 
+        type: 'error', 
+        message: error.message || 'Başvurunuz kaydedilemedi. Lütfen tekrar deneyin.' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="w-full">
+      {/* Header Section with Gradient */}
+      <div className="mb-8">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center shadow-lg">
+            <Sparkles className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900">Influencer Başvuru Formu</h2>
+            <p className="text-gray-600 mt-1">Sosyal medya varlığınızı büyütmek için bize katılın</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Status Message */}
+      {submitStatus.message && (
+        <div className={`mb-6 p-4 rounded-2xl border-2 shadow-sm animate-in fade-in duration-300 ${
+          submitStatus.type === 'success' 
+            ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-300 text-green-800' 
+            : 'bg-gradient-to-r from-red-50 to-rose-50 border-red-300 text-red-800'
+        }`}>
+          <div className="flex items-center gap-3">
+            {submitStatus.type === 'success' ? (
+              <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+            ) : (
+              <span className="w-5 h-5 flex-shrink-0">⚠</span>
+            )}
+            <p className="font-medium">{submitStatus.message}</p>
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-8">
+        {/* Personal Information Section */}
+        <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center">
+              <User className="w-5 h-5 text-red-600" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900">Kişisel Bilgiler</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="md:col-span-2">
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">
+                Ad Soyad <span className="text-red-600">*</span>
+              </label>
+              <div className="relative group">
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  placeholder="Adınız Soyadınız"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">
+                E-posta <span className="text-red-600">*</span>
+              </label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="ornek@email.com"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">
+                Telefon <span className="text-red-600">*</span>
+              </label>
+              <div className="relative group">
+                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  placeholder="+90 5XX XXX XX XX"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">Cinsiyet</label>
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 px-4 text-gray-900 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+              >
+                <option value="">Seçiniz</option>
+                <option value="Erkek">Erkek</option>
+                <option value="Kadın">Kadın</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">
+                Ülke <span className="text-red-600">*</span>
+              </label>
+              <div className="relative group">
+                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="text"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  placeholder="Türkiye"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">
+                Şehir <span className="text-red-600">*</span>
+              </label>
+              <div className="relative group">
+                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  placeholder="İstanbul"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">İlgi Alanları</label>
+              <div className="relative group">
+                <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <textarea
+                  name="interests"
+                  value={formData.interests}
+                  onChange={handleChange}
+                  placeholder="Örn: Teknoloji, Moda, Spor, Yemek..."
+                  rows={3}
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 resize-none transition-all"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Social Media Section */}
+        <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-100 to-purple-100 flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-purple-600" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-gray-900">Sosyal Medya Hesapları</h3>
+              <p className="text-sm text-gray-500 mt-1">En az bir tane zorunlu</p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block flex items-center gap-2">
+                <Instagram className="w-4 h-4 text-pink-600" />
+                Instagram URL
+              </label>
+              <div className="relative group">
+                <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="url"
+                  name="instagram"
+                  value={formData.instagram}
+                  onChange={handleChange}
+                  placeholder="https://instagram.com/kullaniciadi"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block flex items-center gap-2">
+                <Youtube className="w-4 h-4 text-red-600" />
+                YouTube URL
+              </label>
+              <div className="relative group">
+                <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="url"
+                  name="youtube"
+                  value={formData.youtube}
+                  onChange={handleChange}
+                  placeholder="https://youtube.com/@kullaniciadi"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block flex items-center gap-2">
+                <Facebook className="w-4 h-4 text-blue-600" />
+                Facebook URL
+              </label>
+              <div className="relative group">
+                <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="url"
+                  name="facebook"
+                  value={formData.facebook}
+                  onChange={handleChange}
+                  placeholder="https://facebook.com/kullaniciadi"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block flex items-center gap-2">
+                <Twitter className="w-4 h-4 text-blue-400" />
+                Twitter/X URL
+              </label>
+              <div className="relative group">
+                <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="url"
+                  name="twitter"
+                  value={formData.twitter}
+                  onChange={handleChange}
+                  placeholder="https://twitter.com/kullaniciadi"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block flex items-center gap-2">
+                <Globe className="w-4 h-4 text-purple-600" />
+                Twitch TV URL
+              </label>
+              <div className="relative group">
+                <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="url"
+                  name="twitch"
+                  value={formData.twitch}
+                  onChange={handleChange}
+                  placeholder="https://twitch.tv/kullaniciadi"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block flex items-center gap-2">
+                <Globe className="w-4 h-4 text-gray-600" />
+                Blog/Web Sitesi URL
+              </label>
+              <div className="relative group">
+                <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="url"
+                  name="blog"
+                  value={formData.blog}
+                  onChange={handleChange}
+                  placeholder="https://blogunuz.com"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                />
+              </div>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">Diğer Sosyal Medya</label>
+              <div className="relative group">
+                <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="url"
+                  name="other"
+                  value={formData.other}
+                  onChange={handleChange}
+                  placeholder="Diğer platform URL'i"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Budget Section */}
+        <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-orange-600" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900">Bütçe Beklentisi</h3>
+          </div>
+          
+          <div>
+            <label className="text-gray-700 text-sm font-semibold mb-2 block">
+              Paylaşım Başına Ücret (TRY) <span className="text-red-600">*</span>
+            </label>
+            <input
+              type="number"
+              name="budget"
+              value={formData.budget}
+              onChange={handleChange}
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 px-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              required
+            />
+          </div>
+        </div>
+
+        {/* KVKK Section */}
+        <div className="bg-gradient-to-br from-red-50 to-pink-50 border-2 border-red-200 rounded-3xl p-6">
+          <div className="flex items-start gap-4">
+            <input
+              type="checkbox"
+              id="kvkk-checkbox"
+              checked={kvkkAccepted}
+              onChange={(e) => setKvkkAccepted(e.target.checked)}
+              className="mt-1 w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500 focus:ring-2 cursor-pointer"
+              required
+            />
+            <label htmlFor="kvkk-checkbox" className="text-sm text-gray-700 cursor-pointer flex-1">
+              <a 
+                href="/kvkk" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-600 hover:text-red-700 underline font-semibold"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Kişisel Verilerin Korunması Kanunu
+              </a>
+              {' '}metnini okudum, anladım ve{' '}
+              <span className="text-red-600 font-bold">onaylıyorum</span>.
+              <span className="text-red-600"> *</span>
+            </label>
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={isSubmitting || !kvkkAccepted}
+          className="w-full bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
+        >
+          {isSubmitting ? (
+            <>
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              Gönderiliyor...
+            </>
+          ) : (
+            <>
+              <Send className="w-5 h-5" />
+              Başvuruyu Gönder
+            </>
+          )}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default InfluencerForm;
+

@@ -7,12 +7,25 @@ const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const RECIPIENT_EMAIL = 'sabahattinmakine@gmail.com';
 
+// EmailJS initialization flag - sadece bir kez başlat
+let emailJSInitialized = false;
+
 /**
- * EmailJS servisini başlatır
+ * EmailJS servisini başlatır (sadece bir kez)
  */
 export const initEmailJS = () => {
+  // Zaten başlatıldıysa tekrar başlatma
+  if (emailJSInitialized) {
+    return;
+  }
+  
   if (EMAILJS_PUBLIC_KEY) {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    try {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+      emailJSInitialized = true;
+    } catch (error) {
+      console.warn('EmailJS initialization hatası:', error);
+    }
   }
 };
 

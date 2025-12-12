@@ -26,9 +26,12 @@ if (!supabaseUrl || !supabaseAnonKey) {
   
   console.error(errorMessage);
   
-  // Production'da daha görünür hata
+  // Production'da uygulamayı crash etmek yerine, sadece uyarı ver
+  // Bu sayede sayfa açılabilir ama Supabase özellikleri çalışmaz
   if (import.meta.env.PROD) {
-    throw new Error('Supabase configuration is missing. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.');
+    console.error('⚠️ CRITICAL: Supabase configuration is missing. Some features may not work.');
+    // Production'da throw etmek yerine null döndürüyoruz
+    // Bu sayede uygulama açılabilir ama Supabase özellikleri çalışmaz
   }
 }
 

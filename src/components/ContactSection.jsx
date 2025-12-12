@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { MapPin, Phone, Mail, Sparkles, Briefcase } from 'lucide-react';
-import InfluencerForm from './InfluencerForm';
-import BrandForm from './BrandForm';
+
+// Lazy load forms for better performance
+const InfluencerForm = lazy(() => import('./InfluencerForm'));
+const BrandForm = lazy(() => import('./BrandForm'));
 
 /**
  * ContactSection Component
@@ -116,11 +118,17 @@ const ContactSection = () => {
 
             {/* Form Content with Smooth Transition */}
             <div className="transition-all duration-300">
-              {applicationType === 'influencer' ? (
-                <InfluencerForm />
-              ) : (
-                <BrandForm />
-              )}
+              <Suspense fallback={
+                <div className="flex items-center justify-center py-12">
+                  <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              }>
+                {applicationType === 'influencer' ? (
+                  <InfluencerForm />
+                ) : (
+                  <BrandForm />
+                )}
+              </Suspense>
             </div>
           </div>
         </div>

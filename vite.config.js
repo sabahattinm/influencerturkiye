@@ -23,21 +23,44 @@ export default defineConfig({
     // Code splitting optimizasyonu
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Vendor chunks
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'supabase-vendor': ['@supabase/supabase-js'],
-          'ui-vendor': ['framer-motion', 'lucide-react'],
-          'swiper-vendor': ['swiper'],
+        manualChunks: (id) => {
+          // Vendor chunks - daha iyi code splitting
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+              return 'react-vendor';
+            }
+            if (id.includes('@supabase')) {
+              return 'supabase-vendor';
+            }
+            if (id.includes('lucide-react')) {
+              return 'icons-vendor';
+            }
+            if (id.includes('framer-motion')) {
+              return 'animations-vendor';
+            }
+            if (id.includes('swiper')) {
+              return 'swiper-vendor';
+            }
+            // Diğer node_modules paketleri
+            return 'vendor';
+          }
         },
+        // Chunk file names - daha iyi cache
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
     },
     // Chunk size uyarı limiti
     chunkSizeWarningLimit: 1000,
-    // Minification
+    // Minification - terser daha iyi sıkıştırma sağlar ama esbuild daha hızlı
     minify: 'esbuild',
-    // Source maps (production'da kapalı, daha hızlı build)
+    // Source maps (production'da kapalı, daha hızlı build ve daha küçük bundle)
     sourcemap: false,
+    // CSS code splitting
+    cssCodeSplit: true,
+    // Target modern browsers for smaller bundles
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
   },
   // Optimize dependencies
   optimizeDeps: {

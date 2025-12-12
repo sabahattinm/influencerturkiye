@@ -88,7 +88,7 @@ const ContactPage = () => {
         <div className="max-w-4xl mx-auto">
           <div className="space-y-6">
             {/* Map */}
-            <div className="bg-gray-50 border border-gray-200 rounded-3xl overflow-hidden h-96">
+            <div className="bg-gray-50 border border-gray-200 rounded-3xl overflow-hidden h-96 relative">
               <iframe
                 src="https://www.google.com/maps?q=Şişli,+İstanbul&output=embed"
                 width="100%"
@@ -99,6 +99,10 @@ const ContactPage = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full"
                 title="Influencer Türkiye - Şişli / İstanbul"
+                onError={(e) => {
+                  console.warn('Google Maps yüklenemedi');
+                  e.target.style.display = 'none';
+                }}
               />
             </div>
 

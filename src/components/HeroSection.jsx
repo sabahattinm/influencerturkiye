@@ -38,7 +38,7 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="flex-1">
             {/* Main Headline */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-[1.1]">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-[1.1]">
               {/* First line */}
               <div className="flex items-center gap-3 flex-wrap">
                 <span>Bul</span>
@@ -68,11 +68,11 @@ const HeroSection = () => {
                     />
                   ))}
                 </div>
-                <span className="text-gray-900 font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">işbirliği için</span>
+                <span className="text-gray-900 font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">işbirliği için</span>
               </div>
               
               {/* Third line */}
-              <div className="text-gray-900 font-bold mt-2 sm:mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">keşfet</div>
+              <div className="text-gray-900 font-bold mt-2 sm:mt-3 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">keşfet</div>
             </h1>
 
             {/* CTA Buttons */}

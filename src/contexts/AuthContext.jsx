@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState, useMemo, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
-import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext({});
 
@@ -16,7 +15,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Supabase yapılandırılmamışsa hata ver
@@ -31,6 +29,9 @@ export const AuthProvider = ({ children }) => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
+    }).catch((error) => {
+      console.error('Session kontrolü hatası:', error);
+      setLoading(false);
     });
 
     // Auth state değişikliklerini dinle
@@ -42,7 +43,11 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    };
   }, []);
 
   const signUp = useCallback(async (email, password) => {
@@ -110,11 +115,14 @@ export const AuthProvider = ({ children }) => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
-      navigate('/');
+      // Navigate yerine window.location kullan - daha güvenilir
+      window.location.href = '/';
     } catch (error) {
       console.error('Sign out error:', error);
+      // Hata olsa bile yönlendir
+      window.location.href = '/';
     }
-  }, [navigate]);
+  }, []);
 
   const resetPassword = useCallback(async (email) => {
     if (!supabase) {

@@ -39,7 +39,21 @@ export const supabase = supabaseUrl && supabaseAnonKey
       auth: {
         autoRefreshToken: true,
         persistSession: true,
-        detectSessionInUrl: true
-      }
+        detectSessionInUrl: true,
+        flowType: 'pkce' // PKCE flow for better security and CORS handling
+      },
+      global: {
+        // Global fetch options for CORS handling
+        fetch: (url, options = {}) => {
+          return fetch(url, {
+            ...options,
+            headers: {
+              ...options.headers,
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+          });
+        },
+      },
     })
   : null;

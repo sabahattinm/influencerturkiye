@@ -93,29 +93,29 @@ const HeroSection = () => {
           <div className="lg:w-80 xl:w-96 lg:flex-shrink-0">
             <button 
               onClick={goToHowWeWork}
-              className="w-full bg-red-600 hover:bg-red-700 rounded-3xl p-6 sm:p-8 min-h-[280px] sm:min-h-[320px] lg:min-h-[380px] flex flex-col relative overflow-hidden text-left transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-600/20 cursor-pointer group"
+              className="w-full bg-red-600 hover:bg-red-700 rounded-3xl p-4 sm:p-8 min-h-[200px] sm:min-h-[320px] lg:min-h-[380px] flex flex-col relative overflow-hidden text-left transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-600/20 cursor-pointer group"
             >
               {/* Decorative circles */}
-              <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" className="w-16 h-16 sm:w-20 sm:h-20">
+              <div className="absolute top-3 right-3 sm:top-6 sm:right-6">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" className="w-12 h-12 sm:w-20 sm:h-20">
                   <circle cx="60" cy="20" r="30" stroke="white" strokeWidth="1" opacity="0.2" fill="none"/>
                   <circle cx="60" cy="20" r="50" stroke="white" strokeWidth="1" opacity="0.15" fill="none"/>
                 </svg>
               </div>
               
               {/* Video icon */}
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center mb-auto group-hover:scale-110 transition-transform">
-                <Video className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-red-600" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center mb-auto group-hover:scale-110 transition-transform">
+                <Video className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 text-red-600" />
               </div>
               
               {/* Arrow */}
-              <div className="absolute top-6 right-6 sm:top-8 sm:right-8 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
-                <ArrowUpRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+              <div className="absolute top-4 right-4 sm:top-8 sm:right-8 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                <ArrowUpRight className="w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
               </div>
               
               {/* Text */}
               <div className="mt-auto">
-                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white leading-tight">
                   Nasıl<br />Çalışıyoruz?
                 </h3>
               </div>

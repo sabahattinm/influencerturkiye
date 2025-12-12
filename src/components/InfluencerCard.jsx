@@ -59,41 +59,41 @@ const InfluencerCard = memo(({
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
       
-      {/* Content */}
-      <div className="absolute inset-x-0 bottom-0 p-4 pb-16 md:pb-4">
-        <h3 className="text-white font-semibold text-lg">{name}</h3>
+      {/* Content - Left Bottom */}
+      <div className="absolute left-0 bottom-0 p-3 pr-16 md:pr-20">
+        <h3 className="text-white font-semibold text-sm md:text-base">{name}</h3>
         {category && (
-          <p className="text-gray-300 text-sm mb-3">{category}</p>
+          <p className="text-gray-300 text-xs md:text-sm mb-2">{category}</p>
         )}
         
         {/* Stats */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-3">
           {formattedFollowers && (
             <div className="flex items-center gap-1">
-              <Users className="w-4 h-4 text-red-400" />
-              <span className="text-white text-sm font-medium">{formattedFollowers}</span>
+              <Users className="w-3 h-3 md:w-4 md:h-4 text-red-400" />
+              <span className="text-white text-xs md:text-sm font-medium">{formattedFollowers}</span>
             </div>
           )}
           {formattedEngagement && (
             <div className="flex items-center gap-1">
-              <Heart className="w-4 h-4 text-red-400" />
-              <span className="text-white text-sm font-medium">{formattedEngagement}</span>
+              <Heart className="w-3 h-3 md:w-4 md:h-4 text-red-400" />
+              <span className="text-white text-xs md:text-sm font-medium">{formattedEngagement}</span>
             </div>
           )}
         </div>
       </div>
 
-      {/* Platform Badge - Top Right on mobile, Bottom Right on desktop */}
+      {/* Platform Badge - Bottom Right */}
       {instagramUrl && (
         <a 
           href={instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="absolute top-4 right-4 md:top-auto md:bottom-4 z-10 hover:scale-110 transition-transform"
+          className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10 hover:scale-110 transition-transform"
         >
-          <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-700 transition-colors">
-            <Instagram className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-700 transition-colors">
+            <Instagram className="w-4 h-4 md:w-5 md:h-5 text-white" />
           </div>
         </a>
       )}

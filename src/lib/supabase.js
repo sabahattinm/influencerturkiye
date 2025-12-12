@@ -35,25 +35,25 @@ if (!supabaseUrl || !supabaseAnonKey) {
 // Supabase client'ı oluştur
 // Eğer URL veya Key yoksa, boş string ile oluşturma (createClient hata verir)
 export const supabase = supabaseUrl && supabaseAnonKey 
-  ? createClient(supabaseUrl, supabaseAnonKey, {
-      auth: {
-        autoRefreshToken: true,
-        persistSession: true,
-        detectSessionInUrl: true,
-        flowType: 'pkce' // PKCE flow for better security and CORS handling
-      },
-      global: {
-        // Global fetch options for CORS handling
-        fetch: (url, options = {}) => {
-          return fetch(url, {
-            ...options,
-            headers: {
-              ...options.headers,
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-          });
+  ? (() => {
+      // Debug: Environment variable'ların yüklendiğini kontrol et
+      if (import.meta.env.DEV) {
+        console.log('✅ Supabase Client initialized:', {
+          url: supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'MISSING',
+          hasKey: !!supabaseAnonKey,
+          keyLength: supabaseAnonKey?.length || 0
+        });
+      }
+      
+      return createClient(supabaseUrl, supabaseAnonKey, {
+        auth: {
+          autoRefreshToken: true,
+          persistSession: true,
+          detectSessionInUrl: true,
+          flowType: 'pkce' // PKCE flow for better security and CORS handling
         },
-      },
-    })
+        // Custom fetch'i kaldırdık - Supabase kendi header'larını (apikey, etc.) otomatik ekler
+        // Eğer CORS sorunu yaşıyorsanız, Supabase Dashboard > Settings > API > CORS ayarlarından çözebilirsiniz
+      });
+    })()
   : null;

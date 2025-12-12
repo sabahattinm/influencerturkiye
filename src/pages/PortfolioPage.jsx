@@ -23,7 +23,7 @@ const PortfolioPage = () => {
       category: "Life Style / Influencer", 
       type: "lifestyle",
       image: "/portf/sukrankaymak.webp", 
-      followers: "98K",
+      followers: "7.8M",
       engagement: "8%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/sukrankaymak"
@@ -33,7 +33,7 @@ const PortfolioPage = () => {
       category: "Moda / Life Style", 
       type: "moda",
       image: "/portf/hatipoglugizem.webp", 
-      followers: "134K",
+      followers: "2.2M",
       engagement: "12%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/hatipoglugizem"
@@ -43,7 +43,7 @@ const PortfolioPage = () => {
       category: "Seyahat / Influencer", 
       type: "seyahat",
       image: "/portf/mayabasol.webp", 
-      followers: "92K",
+      followers: "2.6M",
       engagement: "10%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/mayabasol"
@@ -53,7 +53,7 @@ const PortfolioPage = () => {
       category: "Moda / Influencer", 
       type: "moda",
       image: "/portf/umrantoo.webp", 
-      followers: "145K",
+      followers: "1.4M",
       engagement: "12%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/umrantoo"
@@ -93,7 +93,7 @@ const PortfolioPage = () => {
       category: "Influencer / Moda", 
       type: "moda",
       image: "/portf/ecmelrumeysa.webp", 
-      followers: "112K",
+      followers: "964K",
       engagement: "9%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/ecmelrumeysa"
@@ -103,7 +103,7 @@ const PortfolioPage = () => {
       category: "Life Style / Influencer", 
       type: "lifestyle",
       image: "/portf/emure_ozd.webp", 
-      followers: "78K",
+      followers: "1M",
       engagement: "11%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/emure_ozd"
@@ -123,41 +123,23 @@ const PortfolioPage = () => {
       category: "Life Style / Influencer", 
       type: "lifestyle",
       image: "/portf/leyla_gunay.webp", 
-      followers: "89K",
+      followers: "1M",
       engagement: "8%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/leylaa_gunay"
     },
     { 
-      name: "Müge Yılmaz", 
+      name: "Songül Dönmez", 
       category: "Life Style / Influencer", 
       type: "lifestyle",
       image: "/portf/saancez.webp", 
-      followers: "145K",
+      followers: "1M",
       engagement: "10%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/saancez"
     },
-    { 
-      name: "Zeynep Boz", 
-      category: "Beauty / Influencer", 
-      type: "beauty",
-      image: "/portf/duygu.webp", 
-      followers: "112K",
-      engagement: "5%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/duygu"
-    },
-    { 
-      name: "Emine Şahin", 
-      category: "Sanat / Life Style", 
-      type: "sanat",
-      image: "/portf/sahinoguzoffical.webp", 
-      followers: "54K",
-      engagement: "14%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/sahinoguzoffical"
-    },
+
+  
     { 
       name: "Aleyna Atalar", 
       category: "Moda / Influencer", 
@@ -223,10 +205,10 @@ const PortfolioPage = () => {
       category: "Sanat / Life Style", 
       type: "sanat",
       image: "/portf/sahinoguzoffical.webp", 
-      followers: "54K",
+      followers: "483K",
       engagement: "12%",
       platform: "instagram",
-      instagramUrl: "https://instagram.com/sahinoguzoffical"
+      instagramUrl: "https://instagram.com/sahinoguzofficial"
     },
     { 
       name: "Nurşen Şenyurt", 
@@ -273,7 +255,7 @@ const PortfolioPage = () => {
       category: "Life Style / Influencer", 
       type: "lifestyle",
       image: "/portf/nnurpehlivan.webp", 
-      followers: "76K",
+      followers: "234K",
       engagement: "9%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/nnurpehivan"
@@ -283,7 +265,7 @@ const PortfolioPage = () => {
       category: "Moda / Influencer", 
       type: "moda",
       image: "/portf/dilarapusa.webp", 
-      followers: "78K",
+      followers: "279K",
       engagement: "10%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/dilarapusa"
@@ -293,27 +275,18 @@ const PortfolioPage = () => {
       category: "Life Style / Influencer", 
       type: "lifestyle",
       image: "/portf/berrakberroo.webp", 
-      followers: "95K",
+      followers: "215K",
       engagement: "6%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/berrakberroo"
     },
-    { 
-      name: "Samet Jankoviç", 
-      category: "Life Style / Influencer", 
-      type: "lifestyle",
-      image: "/portf/berrakberroo.webp", 
-      followers: "95K",
-      engagement: "7%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/berrakberroo"
-    },
+ 
     { 
       name: "Ömer Olgun", 
       category: "Beauty / Life Style", 
       type: "beauty",
       image: "/portf/omer_olgun.webp", 
-      followers: "134K",
+      followers: "200K",
       engagement: "35%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/omer_olgun"

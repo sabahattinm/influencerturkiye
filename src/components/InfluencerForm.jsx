@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { 
   User, Mail, Phone, MapPin, MessageSquare, Send, 
   Instagram, Youtube, Facebook, Globe, Link as LinkIcon,
-  Sparkles, TrendingUp, CheckCircle2
+  Sparkles, TrendingUp, CheckCircle2, Building2
 } from 'lucide-react';
 
 /**
@@ -34,6 +34,7 @@ const InfluencerForm = () => {
     gender: '',
     country: 'Türkiye',
     city: '',
+    brand: '',
     interests: '',
     facebook: '',
     youtube: '',
@@ -107,6 +108,7 @@ const InfluencerForm = () => {
         gender: '',
         country: 'Türkiye',
         city: '',
+        brand: '',
         interests: '',
         facebook: '',
         youtube: '',
@@ -270,6 +272,24 @@ const InfluencerForm = () => {
                   value={formData.city}
                   onChange={handleChange}
                   placeholder="İstanbul"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">
+                Marka Bilgisi <span className="text-red-600">*</span>
+              </label>
+              <div className="relative group">
+                <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
+                <input
+                  type="text"
+                  name="brand"
+                  value={formData.brand}
+                  onChange={handleChange}
+                  placeholder="Marka veya Şirket Adı"
                   className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
                   required
                 />

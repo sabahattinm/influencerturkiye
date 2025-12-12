@@ -19,214 +19,104 @@ const PortfolioPage = () => {
 
   const influencers = [
     { 
-      name: "Asel Kiraz", 
-      category: "Life Style / Influencer", 
-      type: "lifestyle",
-      image: "/portf/aselkirazz.webp", 
-      followers: "298K",
-      engagement: "8.5%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/aselkirazz"
-    },
-    { 
-      name: "Asena Olgun", 
-      category: "Moda / Life Style", 
-      type: "moda",
-      image: "/portf/asenaaolgun.webp", 
-      followers: "89K",
-      engagement: "12.3%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/asenaaolgun"
-    },
-    { 
-      name: "Atalar Aleyna", 
-      category: "Moda / Influencer", 
-      type: "moda",
-      image: "/portf/atalaraleyna.webp", 
-      followers: "804K",
-      engagement: "9.7%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/atalaraleyna"
-    },
-    { 
-      name: "Aytaç Halide Acar", 
-      category: "Life Style / Influencer", 
-      type: "lifestyle",
-      image: "/portf/aytachalideacar.webp", 
-      followers: "67K",
-      engagement: "14.2%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/aytachalideacar"
-    },
-    { 
-      name: "Bağ Tuba", 
-      category: "Influencer / Life Style", 
-      type: "lifestyle",
-      image: "/portf/aytachalideacar.webp", 
-      followers: "67K",
-      engagement: "14.2%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/aytachalideacar"
-    },
-    { 
-      name: "Bağ Tuba", 
-      category: "Influencer / Life Style", 
-      type: "lifestyle",
-      image: "/portf/bagtubaa.webp", 
-      followers: "203K",
-      engagement: "7.8%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/bagtubaa"
-    },
-    { 
-      name: "Betiz", 
-      category: "Beauty / Influencer", 
-      type: "beauty",
-      image: "/portf/betizmmm.webp", 
-      followers: "45K",
-      engagement: "15.6%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/betizmmm"
-    },
-    { 
-      name: "Ecmel Rumeysa", 
-      category: "Influencer / Moda", 
-      type: "moda",
-      image: "/portf/ecmelrumeysa.webp", 
-      followers: "112K",
-      engagement: "10.1%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/ecmelrumeysa"
-    },
-    { 
-      name: "Emure Özd", 
-      category: "Life Style / Influencer", 
-      type: "lifestyle",
-      image: "/portf/emure_ozd.webp", 
-      followers: "78K",
-      engagement: "11.4%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/emure_ozd"
-    },
-    { 
-      name: "Maya Basol", 
-      category: "Seyahat / Influencer", 
-      type: "seyahat",
-      image: "/portf/mayabasol.webp", 
-      followers: "92K",
-      engagement: "9.3%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/mayabasol"
-    },
-    { 
-      name: "Ömer Olgun", 
-      category: "Beauty / Life Style", 
-      type: "beauty",
-      image: "/portf/omer_olgun.webp", 
-      followers: "134K",
-      engagement: "8.9%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/omer_olgun"
-    },
-    { 
-      name: "Özlem Mekik", 
-      category: "Moda / Beauty", 
-      type: "moda",
-      image: "/portf/ozlemmekik.webp", 
-      followers: "167K",
-      engagement: "7.5%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/ozlemmekik"
-    },
-    { 
-      name: "Şahin Oğuz", 
-      category: "Sanat / Life Style", 
-      type: "sanat",
-      image: "/portf/sahinoguzoffical.webp", 
-      followers: "54K",
-      engagement: "13.8%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/sahinoguzoffical"
-    },
-    { 
-      name: "Şükrü Kaymak", 
+      name: "Şükran Kaymak", 
       category: "Life Style / Influencer", 
       type: "lifestyle",
       image: "/portf/sukrankaymak.webp", 
       followers: "98K",
-      engagement: "10.5%",
+      engagement: "8%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/sukrankaymak"
     },
     { 
-      name: "Umran Too", 
-      category: "Moda / Influencer", 
-      type: "moda",
-      image: "/portf/umrantoo.webp", 
-      followers: "145K",
-      engagement: "9.2%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/umrantoo"
-    },
-    { 
-      name: "Uzun Makarna", 
-      category: "Life Style / Influencer", 
-      type: "lifestyle",
-      image: "/portf/uzunmakarna.webp", 
-      followers: "112K",
-      engagement: "11.1%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/uzunmakarna"
-    },
-    { 
-      name: "Yaren To", 
-      category: "Beauty / Influencer", 
-      type: "beauty",
-      image: "/portf/yareento.webp", 
-      followers: "88K",
-      engagement: "12.3%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/yareento"
-    },
-    { 
-      name: "Berrak Berro", 
-      category: "Life Style / Influencer", 
-      type: "lifestyle",
-      image: "/portf/berrakberroo.webp", 
-      followers: "95K",
-      engagement: "9.8%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/berrakberroo"
-    },
-    { 
-      name: "Dilara Pusa", 
-      category: "Moda / Influencer", 
-      type: "moda",
-      image: "/portf/dilarapusa.webp", 
-      followers: "78K",
-      engagement: "11.2%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/dilarapusa"
-    },
-    { 
-      name: "Duygu", 
-      category: "Beauty / Life Style", 
-      type: "beauty",
-      image: "/portf/duygu.webp", 
-      followers: "112K",
-      engagement: "10.5%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/duygu"
-    },
-    { 
-      name: "Hatipoğlu Gizem", 
+      name: "Gizem Hatipoğlu", 
       category: "Moda / Life Style", 
       type: "moda",
       image: "/portf/hatipoglugizem.webp", 
       followers: "134K",
-      engagement: "9.1%",
+      engagement: "12%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/hatipoglugizem"
+    },
+    { 
+      name: "Asya Başol", 
+      category: "Seyahat / Influencer", 
+      type: "seyahat",
+      image: "/portf/mayabasol.webp", 
+      followers: "92K",
+      engagement: "10%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/mayabasol"
+    },
+    { 
+      name: "Ümran Avcu", 
+      category: "Moda / Influencer", 
+      type: "moda",
+      image: "/portf/umrantoo.webp", 
+      followers: "145K",
+      engagement: "12%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/umrantoo"
+    },
+    { 
+      name: "Tuğba Bağ", 
+      category: "Influencer / Life Style", 
+      type: "lifestyle",
+      image: "/portf/bagtubaa.webp", 
+      followers: "2M",
+      engagement: "8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/bagtubaa"
+    },
+    { 
+      name: "Özgür Balakar", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/uzunmakarna.webp", 
+      followers: "112K",
+      engagement: "11%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/uzunmakarna"
+    },
+    { 
+      name: "Betül Demirkaya", 
+      category: "Beauty / Influencer", 
+      type: "beauty",
+      image: "/portf/betizmmm.webp", 
+      followers: "1M",
+      engagement: "12%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/betizmmm"
+    },
+    { 
+      name: "Ecmel Rümeysa Kaya", 
+      category: "Influencer / Moda", 
+      type: "moda",
+      image: "/portf/ecmelrumeysa.webp", 
+      followers: "112K",
+      engagement: "9%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/ecmelrumeysa"
+    },
+    { 
+      name: "Songül Dönmez", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/emure_ozd.webp", 
+      followers: "78K",
+      engagement: "11%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/emure_ozd"
+    },
+    { 
+      name: "Halide Acar", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/aytachalideacar.webp", 
+      followers: "941K",
+      engagement: "12%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/aytachalideacar"
     },
     { 
       name: "Leyla Günay", 
@@ -234,19 +124,149 @@ const PortfolioPage = () => {
       type: "lifestyle",
       image: "/portf/leyla_gunay.webp", 
       followers: "89K",
-      engagement: "12.7%",
+      engagement: "8%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/leylaa_gunay"
     },
     { 
-      name: "Melek İçmeli", 
+      name: "Müge Yılmaz", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/saancez.webp", 
+      followers: "145K",
+      engagement: "10%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/saancez"
+    },
+    { 
+      name: "Zeynep Boz", 
+      category: "Beauty / Influencer", 
+      type: "beauty",
+      image: "/portf/duygu.webp", 
+      followers: "112K",
+      engagement: "5%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/duygu"
+    },
+    { 
+      name: "Emine Şahin", 
+      category: "Sanat / Life Style", 
+      type: "sanat",
+      image: "/portf/sahinoguzoffical.webp", 
+      followers: "54K",
+      engagement: "14%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/sahinoguzoffical"
+    },
+    { 
+      name: "Aleyna Atalar", 
+      category: "Moda / Influencer", 
+      type: "moda",
+      image: "/portf/atalaraleyna.webp", 
+      followers: "804K",
+      engagement: "12%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/atalaraleyna"
+    },
+    { 
+      name: "Özlem Mekik", 
+      category: "Moda / Beauty", 
+      type: "moda",
+      image: "/portf/ozlemmekik.webp", 
+      followers: "167K",
+      engagement: "8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/ozlemmekik"
+    },
+    { 
+      name: "Asena Olgun", 
+      category: "Moda / Life Style", 
+      type: "moda",
+      image: "/portf/asenaaolgun.webp", 
+      followers: "894K",
+      engagement: "10%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/asenaaolgun"
+    },
+    { 
+      name: "Serap Korkmaz", 
+      category: "Moda / Beauty", 
+      type: "moda",
+      image: "/portf/serapinakappa.webp", 
+      followers: "96K",
+      engagement: "10%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/serapinakappa"
+    },
+    { 
+      name: "Melek Öğüt", 
       category: "Beauty / Influencer", 
       type: "beauty",
       image: "/portf/melekicmeli.webp", 
       followers: "102K",
-      engagement: "10.3%",
+      engagement: "5%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/melekicmeli"
+    },
+    { 
+      name: "Sena Şura Er", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/aselkirazz.webp", 
+      followers: "298K",
+      engagement: "8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/aselkirazz"
+    },
+    { 
+      name: "Oğuzhan Şahin", 
+      category: "Sanat / Life Style", 
+      type: "sanat",
+      image: "/portf/sahinoguzoffical.webp", 
+      followers: "54K",
+      engagement: "12%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/sahinoguzoffical"
+    },
+    { 
+      name: "Nurşen Şenyurt", 
+      category: "Moda / Influencer", 
+      type: "moda",
+      image: "/portf/nursen_senyurt.webp", 
+      followers: "118K",
+      engagement: "6%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/nursen_senyurt"
+    },
+    { 
+      name: "Duygu Genç", 
+      category: "Beauty / Life Style", 
+      type: "beauty",
+      image: "/portf/duygu.webp", 
+      followers: "112K",
+      engagement: "7%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/duygu"
+    },
+    { 
+      name: "Yaren Bahadır", 
+      category: "Beauty / Influencer", 
+      type: "beauty",
+      image: "/portf/yareento.webp", 
+      followers: "88K",
+      engagement: "8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/yareento"
+    },
+    { 
+      name: "Asel Kiraz", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/aselkirazz.webp", 
+      followers: "298K",
+      engagement: "8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/aselkirazz"
     },
     { 
       name: "Nur Pehlivan", 
@@ -254,39 +274,49 @@ const PortfolioPage = () => {
       type: "lifestyle",
       image: "/portf/nnurpehlivan.webp", 
       followers: "76K",
-      engagement: "13.5%",
+      engagement: "9%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/nnurpehivan"
     },
     { 
-      name: "Nursen Şenyurt", 
+      name: "Dilara Pusa", 
       category: "Moda / Influencer", 
       type: "moda",
-      image: "/portf/nursen_senyurt.webp", 
-      followers: "118K",
-      engagement: "8.7%",
+      image: "/portf/dilarapusa.webp", 
+      followers: "78K",
+      engagement: "10%",
       platform: "instagram",
-      instagramUrl: "https://instagram.com/nursen_senyurt"
+      instagramUrl: "https://instagram.com/dilarapusa"
     },
     { 
-      name: "Saan Cez", 
+      name: "Berrak Berro", 
       category: "Life Style / Influencer", 
       type: "lifestyle",
-      image: "/portf/saancez.webp", 
-      followers: "145K",
-      engagement: "9.4%",
+      image: "/portf/berrakberroo.webp", 
+      followers: "95K",
+      engagement: "6%",
       platform: "instagram",
-      instagramUrl: "https://instagram.com/saancez"
+      instagramUrl: "https://instagram.com/berrakberroo"
     },
     { 
-      name: "Serap İnakappa", 
-      category: "Moda / Beauty", 
-      type: "moda",
-      image: "/portf/serapinakappa.webp", 
-      followers: "96K",
-      engagement: "11.8%",
+      name: "Samet Jankoviç", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/berrakberroo.webp", 
+      followers: "95K",
+      engagement: "7%",
       platform: "instagram",
-      instagramUrl: "https://instagram.com/serapinakappa"
+      instagramUrl: "https://instagram.com/berrakberroo"
+    },
+    { 
+      name: "Ömer Olgun", 
+      category: "Beauty / Life Style", 
+      type: "beauty",
+      image: "/portf/omer_olgun.webp", 
+      followers: "134K",
+      engagement: "35%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/omer_olgun"
     }
   ];
 

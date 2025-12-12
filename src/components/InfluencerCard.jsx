@@ -60,7 +60,7 @@ const InfluencerCard = memo(({
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
       
       {/* Content */}
-      <div className="absolute inset-x-0 bottom-0 p-4">
+      <div className="absolute inset-x-0 bottom-0 p-4 pb-16 md:pb-4">
         <h3 className="text-white font-semibold text-lg">{name}</h3>
         {category && (
           <p className="text-gray-300 text-sm mb-3">{category}</p>
@@ -83,14 +83,14 @@ const InfluencerCard = memo(({
         </div>
       </div>
 
-      {/* Platform Badge - Bottom Right */}
+      {/* Platform Badge - Top Right on mobile, Bottom Right on desktop */}
       {instagramUrl && (
         <a 
           href={instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="absolute bottom-4 right-4 z-10 hover:scale-110 transition-transform"
+          className="absolute top-4 right-4 md:top-auto md:bottom-4 z-10 hover:scale-110 transition-transform"
         >
           <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-700 transition-colors">
             <Instagram className="w-5 h-5 text-white" />

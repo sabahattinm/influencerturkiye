@@ -200,7 +200,6 @@ const AdminPage = () => {
       user_id: 'Kullanıcı ID',
       // Customer fields
       brand: 'Marka Adı',
-      email: 'E-posta',
       tax_number: 'Vergi Numarası',
       platform: 'Platform',
       content_type: 'İçerik Tipi',

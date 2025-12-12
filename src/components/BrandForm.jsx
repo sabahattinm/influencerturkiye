@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { 
-  User, Phone, Send, MessageSquare, Building2, FileText, 
+  User, Phone, Mail, Send, MessageSquare, Building2, FileText, 
   Instagram, Youtube, Music, CheckCircle2, Briefcase, Target
 } from 'lucide-react';
 import { saveCustomerApplication } from '../services/dataService';
@@ -14,6 +14,7 @@ import { initEmailJS, sendCustomerApplicationEmail } from '../services/emailServ
 const BrandForm = () => {
   const [formData, setFormData] = useState({
     fullName: '',
+    email: '',
     brand: '',
     taxNumber: '',
     phoneNumber: '',
@@ -103,6 +104,7 @@ const BrandForm = () => {
       
       setFormData({
         fullName: '',
+        email: '',
         brand: '',
         taxNumber: '',
         phoneNumber: '',
@@ -179,6 +181,24 @@ const BrandForm = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   placeholder="Adınız Soyadınız"
+                  className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-gray-700 text-sm font-semibold mb-2 block">
+                E-posta <span className="text-red-600">*</span>
+              </label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="ornek@email.com"
                   className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all"
                   required
                 />

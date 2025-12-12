@@ -5,6 +5,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminRoute from './components/AdminRoute';
 import WhatsAppButton from './components/WhatsAppButton';
 
 // Lazy load pages for better performance
@@ -19,6 +20,7 @@ const KVKKPage = lazy(() => import('./pages/KVKKPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
+const AdminPage = lazy(() => import('./pages/AdminPage'));
 
 // Loading component
 const PageLoader = () => (
@@ -76,6 +78,16 @@ function App() {
               <Route path="/iletisim" element={<ContactPage />} />
               <Route path="/basvuru" element={<ApplicationPage />} />
               <Route path="/kvkk" element={<KVKKPage />} />
+              
+              {/* Admin Route - Sadece admin kullanıcılar erişebilir - Gizli URL */}
+              <Route 
+                path="/influencerturkiye" 
+                element={
+                  <AdminRoute>
+                    <AdminPage />
+                  </AdminRoute>
+                } 
+              />
               
               {/* Auth Routes */}
               <Route path="/auth/login" element={<LoginPage />} />

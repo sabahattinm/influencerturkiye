@@ -346,20 +346,7 @@ const BlogDetailPage = () => {
           `}</style>
 
           {/* Share Section */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <p className="text-gray-600 mb-4 font-medium">Bu yazıyı paylaş:</p>
-            <div className="flex gap-4">
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                Facebook
-              </button>
-              <button className="px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition-colors">
-                Twitter
-              </button>
-              <button className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors">
-                Instagram
-              </button>
-            </div>
-          </div>
+      
         </article>
 
         {/* Related Posts */}

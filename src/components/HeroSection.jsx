@@ -10,9 +10,9 @@ const HeroSection = () => {
   const navigate = useNavigate();
   
   const avatars = [
-    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
+    "/assets/boncuksara.webp",
+    "/assets/clburakkk.webp",
+    "/assets/dr_ilaydasimaygul.webp",
   ];
 
   // Navigate to How We Work page
@@ -38,7 +38,7 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="flex-1">
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 leading-[1.1]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-[1.1]">
               {/* First line */}
               <div className="flex items-center gap-3 flex-wrap">
                 <span>Bul</span>
@@ -63,11 +63,11 @@ const HeroSection = () => {
                     />
                   ))}
                 </div>
-                <span className="text-gray-900 font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">işbirliği için</span>
+                <span className="text-gray-900 font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">işbirliği için</span>
               </div>
               
               {/* Third line */}
-              <div className="text-gray-900 font-bold mt-2 sm:mt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">keşfet</div>
+              <div className="text-gray-900 font-bold mt-2 sm:mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">keşfet</div>
             </h1>
 
             {/* CTA Buttons */}
@@ -90,10 +90,10 @@ const HeroSection = () => {
           </div>
 
           {/* Right - CTA Card (Clickable Button - Navigates to new page) */}
-          <div className="lg:w-64 xl:w-80 lg:flex-shrink-0">
+          <div className="lg:w-80 xl:w-96 lg:flex-shrink-0">
             <button 
               onClick={goToHowWeWork}
-              className="w-full bg-red-600 hover:bg-red-700 rounded-3xl p-6 sm:p-8 min-h-[220px] sm:min-h-[260px] lg:min-h-[300px] flex flex-col relative overflow-hidden text-left transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-600/20 cursor-pointer group"
+              className="w-full bg-red-600 hover:bg-red-700 rounded-3xl p-6 sm:p-8 min-h-[280px] sm:min-h-[320px] lg:min-h-[380px] flex flex-col relative overflow-hidden text-left transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-600/20 cursor-pointer group"
             >
               {/* Decorative circles */}
               <div className="absolute top-4 right-4 sm:top-6 sm:right-6">

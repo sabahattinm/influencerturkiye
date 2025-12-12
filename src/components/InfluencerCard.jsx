@@ -1,21 +1,24 @@
 import { memo, useMemo } from 'react';
-import { Instagram } from 'lucide-react';
+import { Instagram, Users, Heart } from 'lucide-react';
 
 /**
  * InfluencerCard Component
- * Displays an influencer's portrait image with name, Instagram link, engagement rate, and followers
+ * Displays an influencer's portrait image with name, category, Instagram link, engagement rate, and followers
+ * Matches the card structure from PortfolioPage.jsx
  * 
  * @param {string} image - The URL of the influencer's image
  * @param {string} name - The influencer's name
+ * @param {string} category - The influencer's category (optional)
  * @param {string} instagramUrl - The Instagram profile URL
- * @param {string} engagementRate - The engagement rate (e.g., "%2", "%8")
- * @param {number} followers - The follower count
+ * @param {string} engagementRate - The engagement rate (e.g., "8%", "12%")
+ * @param {number|string} followers - The follower count (number or formatted string like "7.8M")
  * @param {string} alt - Alt text for the image
  * @param {string} className - Additional CSS classes
  */
 const InfluencerCard = memo(({ 
   image, 
   name, 
+  category,
   instagramUrl, 
   engagementRate, 
   followers,
@@ -31,64 +34,72 @@ const InfluencerCard = memo(({
     return followers.toString();
   }, [followers]);
 
+  // Format engagement rate - remove % if already present, ensure it's a string
+  const formattedEngagement = useMemo(() => {
+    if (!engagementRate) return null;
+    if (typeof engagementRate === 'string') {
+      // If it starts with %, use as is, otherwise add %
+      return engagementRate.startsWith('%') ? engagementRate : `%${engagementRate.replace('%', '')}`;
+    }
+    return `${engagementRate}%`;
+  }, [engagementRate]);
+
   return (
-    <div className={`relative overflow-hidden rounded-3xl group ${className}`}>
-      <img
-        src={image}
-        alt={alt}
-        loading="lazy"
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-100 transition-opacity duration-300" />
+    <div className={`group relative rounded-3xl overflow-hidden cursor-pointer bg-white border border-gray-200 shadow-sm hover:shadow-xl transition-all ${className}`}>
+      {/* Image */}
+      <div className="aspect-[3/4] overflow-hidden">
+        <img
+          src={image}
+          alt={alt}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
       
-      {/* Instagram Icon - Top Right Corner */}
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+      
+      {/* Content */}
+      <div className="absolute inset-x-0 bottom-0 p-4">
+        <h3 className="text-white font-semibold text-lg">{name}</h3>
+        {category && (
+          <p className="text-gray-300 text-sm mb-3">{category}</p>
+        )}
+        
+        {/* Stats */}
+        <div className="flex items-center gap-4">
+          {formattedFollowers && (
+            <div className="flex items-center gap-1">
+              <Users className="w-4 h-4 text-red-400" />
+              <span className="text-white text-sm font-medium">{formattedFollowers}</span>
+            </div>
+          )}
+          {formattedEngagement && (
+            <div className="flex items-center gap-1">
+              <Heart className="w-4 h-4 text-red-400" />
+              <span className="text-white text-sm font-medium">{formattedEngagement}</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Platform Badge - Bottom Right */}
       {instagramUrl && (
-        <a
+        <a 
           href={instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-all hover:scale-110 z-10"
           onClick={(e) => e.stopPropagation()}
+          className="absolute bottom-4 right-4 z-10 hover:scale-110 transition-transform"
         >
-          <Instagram className="w-5 h-5 text-pink-600" />
+          <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-700 transition-colors">
+            <Instagram className="w-5 h-5 text-white" />
+          </div>
         </a>
       )}
-      
-      {/* Follower Badge - Top Left Corner */}
-      {formattedFollowers && (
-        <div className="absolute top-4 left-4">
-          <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
-            <svg 
-              className="w-4 h-4 text-red-600" 
-              fill="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-            </svg>
-            <span className="text-sm font-semibold text-gray-800">{formattedFollowers}</span>
-          </div>
-        </div>
-      )}
-      
-      {/* Content overlay */}
-      <div className="absolute inset-0 flex flex-col justify-end p-4">
-        {/* Name */}
-        {name && (
-          <h3 className="text-white text-xl font-bold mb-2">
-            {name}
-          </h3>
-        )}
-        
-        {/* Engagement Rate */}
-        {engagementRate && (
-          <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 shadow-lg w-fit">
-            <span className="text-sm font-semibold text-gray-800">
-              Etkileşim Oranı: {engagementRate}
-            </span>
-          </div>
-        )}
-      </div>
+
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 bg-red-600/0 group-hover:bg-red-600/10 transition-all duration-300" />
     </div>
   );
 });

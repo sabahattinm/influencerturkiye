@@ -73,7 +73,7 @@ const PortfolioPage = () => {
       category: "Life Style / Influencer", 
       type: "lifestyle",
       image: "/portf/uzunmakarna.webp", 
-      followers: "112K",
+      followers: "1.1M",
       engagement: "11%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/uzunmakarna"
@@ -155,7 +155,7 @@ const PortfolioPage = () => {
       category: "Moda / Beauty", 
       type: "moda",
       image: "/portf/ozlemmekik.webp", 
-      followers: "167K",
+      followers: "706K",
       engagement: "8%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/ozlemmekik"
@@ -175,7 +175,7 @@ const PortfolioPage = () => {
       category: "Moda / Beauty", 
       type: "moda",
       image: "/portf/serapinakappa.webp", 
-      followers: "96K",
+      followers: "602K",
       engagement: "10%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/serapinakappa"
@@ -185,21 +185,12 @@ const PortfolioPage = () => {
       category: "Beauty / Influencer", 
       type: "beauty",
       image: "/portf/melekicmeli.webp", 
-      followers: "102K",
+      followers: "501K",
       engagement: "5%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/melekicmeli"
     },
-    { 
-      name: "Sena Şura Er", 
-      category: "Life Style / Influencer", 
-      type: "lifestyle",
-      image: "/portf/aselkirazz.webp", 
-      followers: "298K",
-      engagement: "8%",
-      platform: "instagram",
-      instagramUrl: "https://instagram.com/aselkirazz"
-    },
+
     { 
       name: "Oğuzhan Şahin", 
       category: "Sanat / Life Style", 
@@ -215,7 +206,7 @@ const PortfolioPage = () => {
       category: "Moda / Influencer", 
       type: "moda",
       image: "/portf/nursen_senyurt.webp", 
-      followers: "118K",
+      followers: "356K",
       engagement: "6%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/nursen_senyurt"
@@ -225,7 +216,7 @@ const PortfolioPage = () => {
       category: "Beauty / Life Style", 
       type: "beauty",
       image: "/portf/duygu.webp", 
-      followers: "112K",
+      followers: "406K",
       engagement: "7%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/duygu"
@@ -235,7 +226,7 @@ const PortfolioPage = () => {
       category: "Beauty / Influencer", 
       type: "beauty",
       image: "/portf/yareento.webp", 
-      followers: "88K",
+      followers: "391K",
       engagement: "8%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/yareento"
@@ -290,6 +281,66 @@ const PortfolioPage = () => {
       engagement: "35%",
       platform: "instagram",
       instagramUrl: "https://instagram.com/omer_olgun"
+    },
+    { 
+      name: "Zeynep Boz", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/assets/zey_zor.webp", 
+      followers: "813K",
+      engagement: "2%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/zey_zor"
+    },
+    { 
+      name: "Burak Çelebi", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/assets/clburakkk.webp", 
+      followers: "321K",
+      engagement: "8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/clburakkk"
+    },
+    { 
+      name: "Samet Jankovic", 
+      category: "Sanat / Life Style", 
+      type: "sanat",
+      image: "/assets/jankovicsamet.webp", 
+      followers: "261K",
+      engagement: "3%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/jankovicsamet"
+    },
+    { 
+      name: "Sara Yılmaz", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/assets/boncuksara.webp", 
+      followers: "896K",
+      engagement: "8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/boncuksara"
+    },
+    { 
+      name: "İlayda Simay Gül", 
+      category: "Beauty / Life Style", 
+      type: "beauty",
+      image: "/assets/dr_ilaydasimaygul.webp", 
+      followers: "172K",
+      engagement: "4%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/dr.ilaydasimaygul"
+    },
+    { 
+      name: "Sena Şura Er", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/assets/senasuraeerr.webp", 
+      followers: "354K",
+      engagement: "3%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/senasuraeerr"
     }
   ];
 

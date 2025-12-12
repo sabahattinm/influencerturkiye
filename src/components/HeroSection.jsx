@@ -31,7 +31,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="bg-white min-h-screen flex items-center px-6 py-12 lg:py-20">
+    <section className="bg-white min-h-[60vh] flex items-center px-6 py-8 lg:py-12">
       <div className="max-w-7xl mx-auto w-full">
         <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
           

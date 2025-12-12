@@ -16,14 +16,6 @@ export const saveInfluencerApplication = async (formData) => {
   }
 
   try {
-    // Mevcut kullanıcının ID'sini al
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    // Kullanıcı yoksa veya auth hatası varsa işlemi durdur
-    if (authError || !user) {
-      throw new Error('Bu işlemi yapabilmek için giriş yapmalısınız. Lütfen hesabınıza giriş yapın.');
-    }
-
     const { data, error } = await supabase
       .from(APPLICATION_TABLE)
       .insert([
@@ -43,7 +35,7 @@ export const saveInfluencerApplication = async (formData) => {
           blog_url: formData.blog || null,
           other_social_media: formData.other || null,
           budget_per_share: parseFloat(formData.budget) || 0,
-          user_id: user.id, // Artık null olamaz, kesinlikle kullanıcı ID'si
+          user_id: null,
         }
       ])
       .select()

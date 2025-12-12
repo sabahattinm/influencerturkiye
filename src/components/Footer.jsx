@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Youtube, Mail, ArrowRight, Phone } from 'lucide-react';
+import { Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 
 /**
  * X.com Icon Component - X.com'un resmi amblemi
@@ -19,21 +19,6 @@ const XIcon = ({ className }) => (
  * Site footer - Kırmızı-Beyaz Tema
  */
 const Footer = () => {
-  const footerLinks = {
-    danisma: {
-      title: "Danışma",
-      links: ["Basın", "Katılım Şartları", "Kullanıcı Sözleşmesi", "Haber Merkezi", "İletişim"]
-    },
-    bilgi: {
-      title: "Bilgi",
-      links: ["Kategoriler", "Prodüksiyon", "İçerik Merkezi", "Başarı Ödülleri", "Analiz Raporları"]
-    },
-    hizmetler: {
-      title: "Hizmetler",
-      links: ["Moda & Tasarım", "Beauty", "Sanat & Life Style", "Seyahat", "Yaşam Tarzı"]
-    }
-  };
-
   const socialLinks = [
     { icon: Instagram, href: "https://www.instagram.com/influencerturkiyecom/" },
     { icon: XIcon, href: "https://x.com/influenturkiye" },
@@ -42,13 +27,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-50 pt-20 pb-8 px-6 border-t border-gray-200">
+    <footer className="bg-gray-50 pt-16 pb-8 px-6 border-t border-gray-200">
       <div className="max-w-7xl mx-auto">
         {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-12 border-b border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pb-12 border-b border-gray-200">
           
           {/* Brand Column */}
-          <div className="lg:col-span-2">
+          <div>
             <div className="flex items-center mb-6">
               <div 
                 className="rounded-lg flex items-center justify-center overflow-hidden"
@@ -61,28 +46,10 @@ const Footer = () => {
                 />
               </div>
             </div>
-            <p className="text-gray-600 leading-relaxed mb-6 max-w-sm">
+            <p className="text-gray-600 leading-relaxed mb-8 text-sm max-w-md">
               Türkiye'nin en kapsamlı influencer marketing platformu. Markalar ve influencer'ları 
               bir araya getiriyoruz.
             </p>
-
-            {/* Contact Info */}
-            <div className="space-y-3 mb-6">
-              <a 
-                href="tel:+905422125395"
-                className="flex items-center gap-3 text-gray-600 hover:text-red-600 transition-colors text-sm"
-              >
-                <Phone className="w-4 h-4" />
-                <span>0542 212 53 95</span>
-              </a>
-              <a 
-                href="mailto:hello@influencerturkiye.com"
-                className="flex items-center gap-3 text-gray-600 hover:text-red-600 transition-colors text-sm"
-              >
-                <Mail className="w-4 h-4" />
-                <span>hello@influencerturkiye.com</span>
-              </a>
-            </div>
 
             {/* Social Links */}
             <div className="flex gap-3">
@@ -92,7 +59,9 @@ const Footer = () => {
                   <a
                     key={index}
                     href={social.href}
-                    className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600 hover:text-red-600 hover:bg-red-50 transition-all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:text-red-600 hover:border-red-600 hover:bg-red-50 transition-all shadow-sm hover:shadow-md"
                   >
                     <IconComponent className="w-5 h-5" />
                   </a>
@@ -101,34 +70,54 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Link Columns */}
-          {Object.values(footerLinks).map((section, index) => (
-            <div key={index}>
-              <h4 className="text-gray-900 font-semibold mb-6">{section.title}</h4>
-              <ul className="space-y-3">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <span className="text-gray-600 text-sm cursor-default">
-                      {link}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+          {/* Contact Column */}
+          <div>
+            <h4 className="text-gray-900 font-semibold mb-8 text-xl">İletişim</h4>
+            <div className="space-y-6">
+              <a 
+                href="tel:+905422125395"
+                className="flex items-start gap-4 text-gray-600 hover:text-red-600 transition-colors group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-gray-400 group-hover:text-red-600 group-hover:border-red-600 group-hover:bg-red-50 transition-all shadow-sm">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div className="flex-1 pt-1">
+                  <div className="text-sm font-semibold text-gray-900 group-hover:text-red-600 mb-1">Telefon</div>
+                  <div className="text-base font-medium">0542 212 53 95</div>
+                </div>
+              </a>
+              <a 
+                href="mailto:hello@influencerturkiye.com"
+                className="flex items-start gap-4 text-gray-600 hover:text-red-600 transition-colors group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-gray-400 group-hover:text-red-600 group-hover:border-red-600 group-hover:bg-red-50 transition-all shadow-sm">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div className="flex-1 pt-1">
+                  <div className="text-sm font-semibold text-gray-900 group-hover:text-red-600 mb-1">E-posta</div>
+                  <div className="text-base font-medium break-all">hello@influencerturkiye.com</div>
+                </div>
+              </a>
             </div>
-          ))}
+          </div>
         </div>
-
-        {/* Newsletter Section */}
-       
 
         {/* Bottom Section */}
         <div className="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <p className="text-gray-600 text-sm">
-            © Influencer Türkiye - All Rights Reserved
+            © {new Date().getFullYear()} Influencer Türkiye - Tüm hakları saklıdır.
           </p>
-          <p className="text-gray-600 text-sm">
-            Designed by <span className="text-red-600">Company</span>
-          </p>
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+            <a 
+              href="/kvkk"
+              className="text-gray-600 hover:text-red-600 transition-colors text-sm"
+            >
+              KVKK
+            </a>
+            <p className="text-gray-600 text-sm">
+              Designed by <span className="text-red-600">Company</span>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

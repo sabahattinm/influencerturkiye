@@ -40,21 +40,21 @@ const HowWeWorkSection = () => {
       number: "03",
       icon: UserCheck,
       title: "Doğru Influencer Tespiti",
-      description: "Planlamaya göre influencer listesi hazırlayıp size sunuyoruz. Bu listede kanalların etkileşim oranını, trafiğini, yaş grubu, cinsiyet ve takipçi kitlesini görebiliyorsunuz.",
+      description: "Planlamaya göre influencer listesi hazırlayıp size sunuyoruz. Bu listede sayfaların etkileşim oranını, trafiğini, yaş grubu, cinsiyet ve takipçi kitlesini görebiliyorsunuz.",
       color: "#B91C1C"
     },
     {
       number: "04",
       icon: Megaphone,
       title: "Reklam ve Kampanya Yönetimi",
-      description: "Ürün ve markanın hazır görsellerinin belirlenen tarih aralığında ve saatinde yayın planı takvimine uygun olarak influencer'e ulaşımı ekibimiz tarafından sağlanır.",
+      description: "Ürün ve markanın hazır görsellerinin belirlenen tarih aralığında ve saatinde yayın planı takvimine uygun olarak influencer'a ulaşımı ekibimiz tarafından sağlanır.",
       color: "#DC2626"
     },
     {
       number: "05",
       icon: Camera,
       title: "İçerik Üretimi ve Yayınlama",
-      description: "Influencer ürün ile özgün içerik üretiyor, profesyonel çekimlerini tamamlıyor ve kanalında reklamınızı sizin geri dönüş ölçümlemenizi sağlayacak şekilde yapıyor.",
+      description: "Influencer ürün ile özgün içerik üretiyor, profesyonel çekimlerini tamamlıyor ve sayfasında reklamınızı sizin geri dönüş ölçümlemenizi sağlayacak şekilde yapıyor.",
       color: "#EF4444"
     },
     {

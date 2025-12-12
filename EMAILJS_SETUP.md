@@ -146,3 +146,4 @@ EmailJS ücretsiz planında aylık 200 e-posta limiti vardır. Limit aşıldığ
 - E-posta gönderme hataları console'da log'lanır
 - Tüm form verileri hem Supabase'e kaydedilir hem de e-posta ile gönderilir
 
+

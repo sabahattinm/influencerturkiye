@@ -19,112 +19,274 @@ const PortfolioPage = () => {
 
   const influencers = [
     { 
-      name: "Cerem Onurluer", 
-      category: "Sanatçı / Influencer", 
-      type: "sanat",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop&crop=face", 
-      followers: "125K",
+      name: "Asel Kiraz", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/aselkirazz.webp", 
+      followers: "298K",
       engagement: "8.5%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/aselkirazz"
     },
     { 
-      name: "Gizem Kurtulmuş", 
+      name: "Asena Olgun", 
       category: "Moda / Life Style", 
       type: "moda",
-      image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/asenaaolgun.webp", 
       followers: "89K",
       engagement: "12.3%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/asenaaolgun"
     },
     { 
-      name: "Tuana Schumacher", 
+      name: "Atalar Aleyna", 
       category: "Moda / Influencer", 
       type: "moda",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop&crop=face", 
-      followers: "156K",
+      image: "/portf/atalaraleyna.webp", 
+      followers: "804K",
       engagement: "9.7%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/atalaraleyna"
     },
     { 
-      name: "Gül Korzay", 
+      name: "Aytaç Halide Acar", 
       category: "Life Style / Influencer", 
       type: "lifestyle",
-      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/aytachalideacar.webp", 
       followers: "67K",
       engagement: "14.2%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/aytachalideacar"
     },
     { 
-      name: "Hande Aselbelis", 
+      name: "Bağ Tuba", 
       category: "Influencer / Life Style", 
       type: "lifestyle",
-      image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/aytachalideacar.webp", 
+      followers: "67K",
+      engagement: "14.2%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/aytachalideacar"
+    },
+    { 
+      name: "Bağ Tuba", 
+      category: "Influencer / Life Style", 
+      type: "lifestyle",
+      image: "/portf/bagtubaa.webp", 
       followers: "203K",
       engagement: "7.8%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/bagtubaa"
     },
     { 
-      name: "Ada Özdemir", 
+      name: "Betiz", 
       category: "Beauty / Influencer", 
       type: "beauty",
-      image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/betizmmm.webp", 
       followers: "45K",
       engagement: "15.6%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/betizmmm"
     },
     { 
-      name: "Şeyma Karakuş", 
+      name: "Ecmel Rumeysa", 
       category: "Influencer / Moda", 
       type: "moda",
-      image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/ecmelrumeysa.webp", 
       followers: "112K",
       engagement: "10.1%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/ecmelrumeysa"
     },
     { 
-      name: "Aleyna Bağdaçiçek", 
+      name: "Emure Özd", 
       category: "Life Style / Influencer", 
       type: "lifestyle",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/emure_ozd.webp", 
       followers: "78K",
       engagement: "11.4%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/emure_ozd"
     },
     { 
-      name: "Deniz Yılmaz", 
+      name: "Maya Basol", 
       category: "Seyahat / Influencer", 
       type: "seyahat",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/mayabasol.webp", 
       followers: "92K",
       engagement: "9.3%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/mayabasol"
     },
     { 
-      name: "Elif Korkmaz", 
+      name: "Ömer Olgun", 
       category: "Beauty / Life Style", 
       type: "beauty",
-      image: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/omer_olgun.webp", 
       followers: "134K",
       engagement: "8.9%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/omer_olgun"
     },
     { 
-      name: "Merve Aktaş", 
+      name: "Özlem Mekik", 
       category: "Moda / Beauty", 
       type: "moda",
-      image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/ozlemmekik.webp", 
       followers: "167K",
       engagement: "7.5%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/ozlemmekik"
     },
     { 
-      name: "Selin Demir", 
+      name: "Şahin Oğuz", 
       category: "Sanat / Life Style", 
       type: "sanat",
-      image: "https://images.unsplash.com/photo-1496440737103-cd596325d314?w=400&h=500&fit=crop&crop=face", 
+      image: "/portf/sahinoguzoffical.webp", 
       followers: "54K",
       engagement: "13.8%",
-      platform: "instagram"
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/sahinoguzoffical"
+    },
+    { 
+      name: "Şükrü Kaymak", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/sukrankaymak.webp", 
+      followers: "98K",
+      engagement: "10.5%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/sukrankaymak"
+    },
+    { 
+      name: "Umran Too", 
+      category: "Moda / Influencer", 
+      type: "moda",
+      image: "/portf/umrantoo.webp", 
+      followers: "145K",
+      engagement: "9.2%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/umrantoo"
+    },
+    { 
+      name: "Uzun Makarna", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/uzunmakarna.webp", 
+      followers: "112K",
+      engagement: "11.1%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/uzunmakarna"
+    },
+    { 
+      name: "Yaren To", 
+      category: "Beauty / Influencer", 
+      type: "beauty",
+      image: "/portf/yareento.webp", 
+      followers: "88K",
+      engagement: "12.3%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/yareento"
+    },
+    { 
+      name: "Berrak Berro", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/berrakberroo.webp", 
+      followers: "95K",
+      engagement: "9.8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/berrakberroo"
+    },
+    { 
+      name: "Dilara Pusa", 
+      category: "Moda / Influencer", 
+      type: "moda",
+      image: "/portf/dilarapusa.webp", 
+      followers: "78K",
+      engagement: "11.2%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/dilarapusa"
+    },
+    { 
+      name: "Duygu", 
+      category: "Beauty / Life Style", 
+      type: "beauty",
+      image: "/portf/duygu.webp", 
+      followers: "112K",
+      engagement: "10.5%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/duygu"
+    },
+    { 
+      name: "Hatipoğlu Gizem", 
+      category: "Moda / Life Style", 
+      type: "moda",
+      image: "/portf/hatipoglugizem.webp", 
+      followers: "134K",
+      engagement: "9.1%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/hatipoglugizem"
+    },
+    { 
+      name: "Leyla Günay", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/leyla_gunay.webp", 
+      followers: "89K",
+      engagement: "12.7%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/leylaa_gunay"
+    },
+    { 
+      name: "Melek İçmeli", 
+      category: "Beauty / Influencer", 
+      type: "beauty",
+      image: "/portf/melekicmeli.webp", 
+      followers: "102K",
+      engagement: "10.3%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/melekicmeli"
+    },
+    { 
+      name: "Nur Pehlivan", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/nnurpehlivan.webp", 
+      followers: "76K",
+      engagement: "13.5%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/nnurpehivan"
+    },
+    { 
+      name: "Nursen Şenyurt", 
+      category: "Moda / Influencer", 
+      type: "moda",
+      image: "/portf/nursen_senyurt.webp", 
+      followers: "118K",
+      engagement: "8.7%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/nursen_senyurt"
+    },
+    { 
+      name: "Saan Cez", 
+      category: "Life Style / Influencer", 
+      type: "lifestyle",
+      image: "/portf/saancez.webp", 
+      followers: "145K",
+      engagement: "9.4%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/saancez"
+    },
+    { 
+      name: "Serap İnakappa", 
+      category: "Moda / Beauty", 
+      type: "moda",
+      image: "/portf/serapinakappa.webp", 
+      followers: "96K",
+      engagement: "11.8%",
+      platform: "instagram",
+      instagramUrl: "https://instagram.com/serapinakappa"
     }
   ];
 
@@ -207,15 +369,6 @@ const PortfolioPage = () => {
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               
-              {/* Platform Badge */}
-              <div className="absolute top-4 right-4">
-                <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
-                  {influencer.platform === 'instagram' && <Instagram className="w-5 h-5 text-white" />}
-                  {influencer.platform === 'youtube' && <Youtube className="w-5 h-5 text-white" />}
-                  {influencer.platform === 'twitter' && <Twitter className="w-5 h-5 text-white" />}
-                </div>
-              </div>
-              
               {/* Content */}
               <div className="absolute inset-x-0 bottom-0 p-4">
                 <h3 className="text-white font-semibold text-lg">{influencer.name}</h3>
@@ -233,6 +386,23 @@ const PortfolioPage = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Platform Badge - Bottom Right */}
+              {influencer.instagramUrl && (
+                <a 
+                  href={influencer.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="absolute bottom-4 right-4 z-10 hover:scale-110 transition-transform"
+                >
+                  <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-700 transition-colors">
+                    {influencer.platform === 'instagram' && <Instagram className="w-5 h-5 text-white" />}
+                    {influencer.platform === 'youtube' && <Youtube className="w-5 h-5 text-white" />}
+                    {influencer.platform === 'twitter' && <Twitter className="w-5 h-5 text-white" />}
+                  </div>
+                </a>
+              )}
 
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-red-600/0 group-hover:bg-red-600/10 transition-all duration-300" />

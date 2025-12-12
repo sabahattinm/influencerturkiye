@@ -1,9 +1,23 @@
 import { useState, useEffect } from 'react';
 import { 
   User, Mail, Phone, MapPin, MessageSquare, Send, 
-  Instagram, Youtube, Facebook, Twitter, Globe, Link as LinkIcon,
+  Instagram, Youtube, Facebook, Globe, Link as LinkIcon,
   Sparkles, TrendingUp, CheckCircle2
 } from 'lucide-react';
+
+/**
+ * X.com Icon Component - X.com'un resmi amblemi
+ */
+const XIcon = ({ className }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    className={className}
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
 import { saveInfluencerApplication } from '../services/dataService';
 import { initEmailJS, sendInfluencerApplicationEmail } from '../services/emailService';
 
@@ -348,8 +362,8 @@ const InfluencerForm = () => {
 
             <div>
               <label className="text-gray-700 text-sm font-semibold mb-2 block flex items-center gap-2">
-                <Twitter className="w-4 h-4 text-blue-400" />
-                Twitter/X URL
+                <XIcon className="w-4 h-4 text-gray-900" />
+                X (Twitter) URL
               </label>
               <div className="relative group">
                 <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-red-600 transition-colors" />
@@ -358,7 +372,7 @@ const InfluencerForm = () => {
                   name="twitter"
                   value={formData.twitter}
                   onChange={handleChange}
-                  placeholder="https://twitter.com/kullaniciadi"
+                  placeholder="https://x.com/kullaniciadi"
                   className="w-full bg-white border-2 border-gray-200 rounded-xl py-4 pl-12 pr-4 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
                 />
               </div>
@@ -496,4 +510,5 @@ const InfluencerForm = () => {
 };
 
 export default InfluencerForm;
+
 

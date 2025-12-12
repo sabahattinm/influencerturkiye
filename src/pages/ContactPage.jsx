@@ -9,7 +9,7 @@ const ContactPage = () => {
     {
       icon: MapPin,
       title: "Adres",
-      content: "Etiler / Beşiktaş / İstanbul",
+      content: "Şişli  / İstanbul",
       color: "#DC2626"
     },
     {
@@ -90,7 +90,7 @@ const ContactPage = () => {
             {/* Map */}
             <div className="bg-gray-50 border border-gray-200 rounded-3xl overflow-hidden h-96">
               <iframe
-                src="https://www.google.com/maps?q=Etiler,+Beşiktaş,+İstanbul&output=embed"
+                src="https://www.google.com/maps?q=Şişli,+İstanbul&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -98,7 +98,7 @@ const ContactPage = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full"
-                title="Influencer Türkiye - Etiler / Beşiktaş / İstanbul"
+                title="Influencer Türkiye - Şişli / İstanbul"
               />
             </div>
 

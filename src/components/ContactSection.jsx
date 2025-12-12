@@ -40,7 +40,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="text-gray-900 font-semibold mb-1">Adres</h4>
-                  <p className="text-gray-600">Etiler / Beşiktaş / İstanbul</p>
+                  <p className="text-gray-600">Şişli / Beşiktaş / İstanbul</p>
                 </div>
               </div>
 

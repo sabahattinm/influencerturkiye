@@ -22,6 +22,7 @@ const BrandForm = () => {
     description: ''
   });
 
+  const [kvkkAccepted, setKvkkAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: null, message: '' });
 
@@ -67,6 +68,15 @@ const BrandForm = () => {
     setSubmitStatus({ type: null, message: '' });
 
     try {
+      if (!kvkkAccepted) {
+        setSubmitStatus({ 
+          type: 'error', 
+          message: 'Lütfen Kişisel Verilerin Korunması Kanunu\'nu onaylayınız.' 
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       if (formData.platform && !formData.contentType) {
         setSubmitStatus({ 
           type: 'error', 
@@ -100,6 +110,7 @@ const BrandForm = () => {
         contentType: '',
         description: ''
       });
+      setKvkkAccepted(false);
     } catch (error) {
       setSubmitStatus({ 
         type: 'error', 
@@ -356,10 +367,38 @@ const BrandForm = () => {
           </div>
         </div>
 
+        {/* KVKK Section */}
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-3xl p-6">
+          <div className="flex items-start gap-4">
+            <input
+              type="checkbox"
+              id="kvkk-checkbox-brand"
+              checked={kvkkAccepted}
+              onChange={(e) => setKvkkAccepted(e.target.checked)}
+              className="mt-1 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer"
+              required
+            />
+            <label htmlFor="kvkk-checkbox-brand" className="text-sm text-gray-700 cursor-pointer flex-1">
+              <a 
+                href="/kvkk" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-700 underline font-semibold"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Kişisel Verilerin Korunması Kanunu
+              </a>
+              {' '}metnini okudum, anladım ve{' '}
+              <span className="text-blue-600 font-bold">onaylıyorum</span>.
+              <span className="text-red-600"> *</span>
+            </label>
+          </div>
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !kvkkAccepted}
           className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
         >
           {isSubmitting ? (
@@ -380,4 +419,5 @@ const BrandForm = () => {
 };
 
 export default BrandForm;
+
 

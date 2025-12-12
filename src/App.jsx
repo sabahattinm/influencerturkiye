@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,6 +12,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const HowWeWorkPage = lazy(() => import('./pages/HowWeWorkPage'));
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ApplicationPage = lazy(() => import('./pages/ApplicationPage'));
 const KVKKPage = lazy(() => import('./pages/KVKKPage'));
@@ -70,6 +72,7 @@ function App() {
                 } 
               />
               <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:id" element={<BlogDetailPage />} />
               <Route path="/iletisim" element={<ContactPage />} />
               <Route path="/basvuru" element={<ApplicationPage />} />
               <Route path="/kvkk" element={<KVKKPage />} />
@@ -89,6 +92,9 @@ function App() {
           
           {/* WhatsApp Floating Button - Tüm sayfalarda (auth sayfaları hariç) */}
           <WhatsAppButtonWrapper />
+          
+          {/* Vercel Speed Insights - Performance metrics collection */}
+          <SpeedInsights />
         </div>
       </AuthProvider>
     </Router>

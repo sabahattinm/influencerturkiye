@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Search, Tag, Clock } from 'lucide-react';
 
 /**
  * BlogPage - Blog Sayfası
  */
 const BlogPage = () => {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -20,21 +22,21 @@ const BlogPage = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "Micro-Influencer Pazarlama: 2024'ün En Etkili Stratejisi",
-      excerpt: "Büyük bütçeler yerine akıllı stratejilerle markanızı büyütün. Micro-influencer pazarlamanın neden geleceğin pazarlaması olduğunu keşfedin.",
+      title: "2025 Yıl Sonu Influencer Pazarlama Trendleri: Ne Öğrendik?",
+      excerpt: "2025 yılının sonuna yaklaşırken, influencer pazarlama sektöründeki en önemli trendleri ve öğrenilen dersleri derledik. Gelecek yıl için hazırlık yapın.",
       author: "Ayşe Yılmaz",
-      date: "15 Aralık 2024",
-      category: "marketing",
-      readTime: "5 dk",
+      date: "12 Aralık 2025",
+      category: "trends",
+      readTime: "8 dk",
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
       featured: true
     },
     {
       id: 2,
-      title: "Instagram Algoritması Değişti: Influencer'lar İçin Yeni Fırsatlar",
-      excerpt: "Instagram'ın yeni algoritması micro-influencer'ların paylaşımlarını daha görünür hale getiriyor. Bu değişiklikten nasıl faydalanabilirsiniz?",
+      title: "Instagram Reels ve Stories: 2025'in En Etkili İçerik Formatları",
+      excerpt: "Instagram'ın Reels ve Stories formatları, 2025'te influencer pazarlamada en yüksek engagement oranlarını sağladı. Bu formatları nasıl etkili kullanabilirsiniz?",
       author: "Mehmet Demir",
-      date: "12 Aralık 2024",
+      date: "10 Aralık 2025",
       category: "trends",
       readTime: "7 dk",
       image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
@@ -42,10 +44,10 @@ const BlogPage = () => {
     },
     {
       id: 3,
-      title: "Başarı Hikayesi: Moda Markası %300 ROI Elde Etti",
-      excerpt: "Bir moda markasının 100 micro-influencer ile yaptığı kampanyanın detaylı analizi ve sonuçları.",
+      title: "Q4 2025 Başarı Hikayesi: E-Ticaret Markası %450 ROI Elde Etti",
+      excerpt: "Bir e-ticaret markasının son çeyrekte 150 micro-influencer ile yaptığı kampanyanın detaylı analizi ve rekor kıran sonuçları.",
       author: "Zeynep Kaya",
-      date: "10 Aralık 2024",
+      date: "8 Aralık 2025",
       category: "case-studies",
       readTime: "10 dk",
       image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop",
@@ -53,10 +55,10 @@ const BlogPage = () => {
     },
     {
       id: 4,
-      title: "Influencer Seçerken Dikkat Edilmesi Gereken 10 Kriter",
-      excerpt: "Doğru influencer seçimi kampanyanızın başarısını belirler. İşte dikkat etmeniz gereken en önemli kriterler.",
+      title: "2026 İçin Influencer Pazarlama Stratejisi Nasıl Hazırlanır?",
+      excerpt: "Yeni yıla hazırlanırken, influencer pazarlama stratejinizi nasıl optimize edebilirsiniz? 2026 için hazırlık rehberi.",
       author: "Can Özkan",
-      date: "8 Aralık 2024",
+      date: "5 Aralık 2025",
       category: "tips",
       readTime: "6 dk",
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop",
@@ -64,10 +66,10 @@ const BlogPage = () => {
     },
     {
       id: 5,
-      title: "TikTok Pazarlama: Yeni Nesil Influencer Stratejisi",
-      excerpt: "TikTok'un influencer pazarlamadaki yükselişi ve markaların bu platformu nasıl kullanabileceği.",
+      title: "TikTok Shop Entegrasyonu: Influencer Satışlarında Devrim",
+      excerpt: "TikTok Shop'un influencer pazarlamaya entegrasyonu, doğrudan satışları %300 artırdı. Bu yeni özellikten nasıl faydalanabilirsiniz?",
       author: "Elif Şahin",
-      date: "5 Aralık 2024",
+      date: "3 Aralık 2025",
       category: "trends",
       readTime: "8 dk",
       image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop",
@@ -75,13 +77,35 @@ const BlogPage = () => {
     },
     {
       id: 6,
-      title: "Influencer Pazarlama Bütçesi Nasıl Planlanır?",
-      excerpt: "Kampanyanız için doğru bütçe planlaması yapmanın yolları ve ROI hesaplama teknikleri.",
+      title: "Micro-Influencer Pazarlama: 2025'in En Etkili Stratejisi",
+      excerpt: "Büyük bütçeler yerine akıllı stratejilerle markanızı büyütün. Micro-influencer pazarlamanın neden geleceğin pazarlaması olduğunu keşfedin.",
       author: "Burak Yıldız",
-      date: "3 Aralık 2024",
-      category: "tips",
+      date: "1 Aralık 2025",
+      category: "marketing",
       readTime: "9 dk",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+      featured: false
+    },
+    {
+      id: 7,
+      title: "AI Destekli Influencer Eşleştirme: Gelecek Burada",
+      excerpt: "Yapay zeka teknolojileri, marka-influencer eşleştirmesini devrim niteliğinde değiştirdi. 2025'te en başarılı AI araçları ve kullanım örnekleri.",
+      author: "Ayşe Yılmaz",
+      date: "28 Kasım 2025",
+      category: "trends",
+      readTime: "6 dk",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
+      featured: false
+    },
+    {
+      id: 8,
+      title: "YouTube Shorts ve Instagram Reels: Kısa Video İçeriklerin Gücü",
+      excerpt: "2025'te kısa video içerikler, influencer pazarlamada en yüksek ROI'yi sağladı. Bu platformları nasıl etkili kullanabilirsiniz?",
+      author: "Mehmet Demir",
+      date: "25 Kasım 2025",
+      category: "news",
+      readTime: "7 dk",
+      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
       featured: false
     }
   ];
@@ -187,7 +211,10 @@ const BlogPage = () => {
                         <div className="text-gray-600 text-sm">Yazar</div>
                       </div>
                     </div>
-                    <button className="flex items-center gap-2 text-red-600 hover:text-red-700 transition-colors font-semibold">
+                    <button 
+                      onClick={() => navigate(`/blog/${featuredPost.id}`)}
+                      className="flex items-center gap-2 text-red-600 hover:text-red-700 transition-colors font-semibold"
+                    >
                       Devamını Oku
                       <ArrowRight className="w-5 h-5" />
                     </button>
@@ -205,6 +232,7 @@ const BlogPage = () => {
             .map((post) => (
             <article
               key={post.id}
+              onClick={() => navigate(`/blog/${post.id}`)}
               className="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:bg-red-50 hover:border-red-200 transition-all group cursor-pointer shadow-sm"
             >
               {/* Image */}

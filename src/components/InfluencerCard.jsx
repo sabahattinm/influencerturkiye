@@ -51,6 +51,9 @@ const InfluencerCard = memo(({
         <img
           src={image}
           alt={alt}
+          width="400"
+          height="533"
+          sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 300px"
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />

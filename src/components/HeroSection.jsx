@@ -58,8 +58,13 @@ const HeroSection = () => {
                       key={index}
                       src={avatar}
                       alt={`Kullanıcı ${index + 1}`}
+                      width="64"
+                      height="64"
+                      sizes="(max-width: 640px) 40px, (max-width: 768px) 48px, (max-width: 1024px) 56px, 64px"
                       className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full border-2 border-white object-cover shadow-md"
                       style={{ zIndex: avatars.length - index }}
+                      loading="lazy"
+                      fetchPriority="low"
                     />
                   ))}
                 </div>

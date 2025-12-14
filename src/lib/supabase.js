@@ -2,8 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 
 // Supabase URL ve Anon Key - Bu değerleri kendi Supabase projenizden almalısınız
 // Supabase Dashboard > Project Settings > API
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+export const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+export const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 // Production'da environment variable'lar yoksa hata ver
 if (!supabaseUrl || !supabaseAnonKey) {

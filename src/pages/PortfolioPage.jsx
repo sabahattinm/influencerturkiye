@@ -344,9 +344,33 @@ const PortfolioPage = () => {
     }
   ];
 
-  const filteredInfluencers = activeFilter === 'all' 
+  // Helper function to convert follower string to number for sorting
+  // Converts "7.8M" to 7800000, "964K" to 964000, etc.
+  const parseFollowers = (followersStr) => {
+    if (!followersStr) return 0;
+    
+    const upperStr = followersStr.toUpperCase();
+    const numStr = upperStr.replace(/[^0-9.]/g, '');
+    const num = parseFloat(numStr) || 0;
+    
+    if (upperStr.includes('M')) {
+      return num * 1000000;
+    } else if (upperStr.includes('K')) {
+      return num * 1000;
+    }
+    
+    return num;
+  };
+
+  // Filter and sort influencers by follower count (descending)
+  const filteredInfluencers = (activeFilter === 'all' 
     ? influencers 
-    : influencers.filter(i => i.type === activeFilter);
+    : influencers.filter(i => i.type === activeFilter)
+  ).sort((a, b) => {
+    const followersA = parseFollowers(a.followers);
+    const followersB = parseFollowers(b.followers);
+    return followersB - followersA; // Sort descending (highest first)
+  });
 
   const stats = [
     { icon: Users, value: "13.150+", label: "Influencer" },
@@ -428,19 +452,19 @@ const PortfolioPage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               
               {/* Content */}
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <h3 className="text-white font-semibold text-lg">{influencer.name}</h3>
-                <p className="text-gray-300 text-sm mb-3">{influencer.category}</p>
+              <div className="absolute left-0 bottom-0 p-3 pr-16 md:pr-20">
+                <h3 className="text-white font-semibold text-sm md:text-base">{influencer.name}</h3>
+                <p className="text-gray-300 text-xs md:text-sm mb-2">{influencer.category}</p>
                 
                 {/* Stats */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 md:gap-3">
                   <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4 text-red-400" />
-                    <span className="text-white text-sm font-medium">{influencer.followers}</span>
+                    <Users className="w-3 h-3 md:w-4 md:h-4 text-red-400" />
+                    <span className="text-white text-xs md:text-sm font-medium">{influencer.followers}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Heart className="w-4 h-4 text-red-400" />
-                    <span className="text-white text-sm font-medium">{influencer.engagement}</span>
+                    <Heart className="w-3 h-3 md:w-4 md:h-4 text-red-400" />
+                    <span className="text-white text-xs md:text-sm font-medium">{influencer.engagement}</span>
                   </div>
                 </div>
               </div>
@@ -452,12 +476,12 @@ const PortfolioPage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="absolute bottom-4 right-4 z-10 hover:scale-110 transition-transform"
+                  className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10 hover:scale-110 transition-transform"
                 >
-                  <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-700 transition-colors">
-                    {influencer.platform === 'instagram' && <Instagram className="w-5 h-5 text-white" />}
-                    {influencer.platform === 'youtube' && <Youtube className="w-5 h-5 text-white" />}
-                    {influencer.platform === 'twitter' && <Twitter className="w-5 h-5 text-white" />}
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-600 flex items-center justify-center shadow-lg hover:bg-red-700 transition-colors">
+                    {influencer.platform === 'instagram' && <Instagram className="w-4 h-4 md:w-5 md:h-5 text-white" />}
+                    {influencer.platform === 'youtube' && <Youtube className="w-4 h-4 md:w-5 md:h-5 text-white" />}
+                    {influencer.platform === 'twitter' && <Twitter className="w-4 h-4 md:w-5 md:h-5 text-white" />}
                   </div>
                 </a>
               )}

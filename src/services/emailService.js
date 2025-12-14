@@ -1,134 +1,194 @@
-// src/services/emailService.js
-import emailjs from '@emailjs/browser';
+// emailService.js - Supabase Edge Function ile e-posta gönderimi
 
-// EmailJS configuration - Bu değerleri .env dosyasından alacağız
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-const RECIPIENT_EMAIL = 'sabahattinmakine@gmail.com';
-
-// EmailJS initialization flag - sadece bir kez başlat
-let emailJSInitialized = false;
+import { supabase, supabaseUrl, supabaseAnonKey } from '../lib/supabase';
 
 /**
- * EmailJS servisini başlatır (sadece bir kez)
+ * Supabase Edge Function'ı çağırarak e-posta gönderir
+ * @param {string} functionName - Edge Function adı
+ * @param {Object} payload - Gönderilecek veri
+ * @returns {Promise} Response
  */
-export const initEmailJS = () => {
-  // Zaten başlatıldıysa tekrar başlatma
-  if (emailJSInitialized) {
-    return;
+const sendEmailViaEdgeFunction = async (functionName, payload) => {
+  if (!supabase) {
+    throw new Error('Supabase client yapılandırılmamış. Lütfen environment variable\'ları kontrol edin.');
   }
-  
-  if (EMAILJS_PUBLIC_KEY) {
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Supabase URL veya Key bulunamadı. Lütfen environment variable\'ları kontrol edin.');
+  }
+
+  try {
+    console.log(`📤 Edge Function çağrılıyor: ${functionName}`, payload);
+    
+    // Edge Function URL'ini oluştur
+    const functionUrl = `${supabaseUrl}/functions/v1/${functionName}`;
+    
+    // Fetch ile direkt çağır - bu şekilde response body'yi okuyabiliriz
+    const response = await fetch(functionUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${supabaseAnonKey}`,
+        'apikey': supabaseAnonKey,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    console.log(`📥 Edge Function response status:`, response.status);
+
+    // Response body'yi oku
+    let responseData;
     try {
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-      emailJSInitialized = true;
-    } catch (error) {
-      console.warn('EmailJS initialization hatası:', error);
+      responseData = await response.json();
+    } catch (parseError) {
+      const textResponse = await response.text();
+      console.error('Response parse hatası:', parseError);
+      console.error('Response text:', textResponse);
+      throw new Error(`Edge Function yanıtı parse edilemedi: ${textResponse}`);
     }
+
+    console.log(`📥 Edge Function response data:`, responseData);
+
+    // Status code kontrolü
+    if (!response.ok) {
+      // Response body'deki hata mesajını kullan
+      const errorMessage = responseData?.error || responseData?.message || `Edge Function hatası (Status: ${response.status})`;
+      const errorDetails = responseData?.details ? ` Detaylar: ${JSON.stringify(responseData.details)}` : '';
+      throw new Error(`${errorMessage}${errorDetails}`);
+    }
+
+    // Response başarılı ama success: false olabilir
+    if (responseData && !responseData.success) {
+      const errorMessage = responseData.error || 'E-posta gönderilemedi';
+      const errorDetails = responseData.details ? ` Detaylar: ${JSON.stringify(responseData.details)}` : '';
+      throw new Error(`${errorMessage}${errorDetails}`);
+    }
+
+    console.log(`✅ Edge Function başarılı: ${functionName}`, responseData);
+    return responseData;
+  } catch (error) {
+    console.error(`❌ E-posta gönderim hatası (${functionName}):`, error);
+    console.error('Error stack:', error.stack);
+    
+    // Daha anlaşılır hata mesajı
+    if (error.message) {
+      throw new Error(error.message);
+    }
+    
+    // Error objesi ise, message'ı çıkar
+    if (typeof error === 'object' && error !== null) {
+      const errorMessage = error.message || error.error || JSON.stringify(error);
+      throw new Error(errorMessage);
+    }
+    
+    throw error;
   }
 };
 
 /**
- * Influencer başvurusu için e-posta gönderir
- * @param {object} formData - Form verileri
+ * E-posta servisinin hazır olup olmadığını kontrol eder
+ * @returns {boolean}
  */
-export const sendInfluencerApplicationEmail = async (formData) => {
-  // EmailJS yapılandırması kontrolü
-  if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-    console.warn('EmailJS yapılandırılmamış. E-posta gönderilemedi.');
-    return;
+const isEmailServiceReady = () => {
+  return !!supabase;
+};
+
+/**
+ * Influencer başvuru formunu Supabase Edge Function ile e-posta gönderir
+ * @param {Object} formData - Form verileri
+ * @returns {Promise} Response
+ */
+const sendInfluencerEmail = async (formData) => {
+  if (!supabase) {
+    throw new Error("Supabase client yapılandırılmamış");
   }
 
   try {
-    // Sosyal medya hesaplarını formatla
-    const socialMediaAccounts = [];
-    if (formData.instagram) socialMediaAccounts.push(`Instagram: ${formData.instagram}`);
-    if (formData.youtube) socialMediaAccounts.push(`YouTube: ${formData.youtube}`);
-    if (formData.facebook) socialMediaAccounts.push(`Facebook: ${formData.facebook}`);
-    if (formData.twitter) socialMediaAccounts.push(`Twitter/X: ${formData.twitter}`);
-    if (formData.twitch) socialMediaAccounts.push(`Twitch: ${formData.twitch}`);
-    if (formData.blog) socialMediaAccounts.push(`Blog/Web: ${formData.blog}`);
-    if (formData.other) socialMediaAccounts.push(`Diğer: ${formData.other}`);
-
-    const templateParams = {
-      to_email: RECIPIENT_EMAIL,
-      application_type: 'Influencer Başvurusu',
-      full_name: formData.fullName,
-      email: formData.email,
-      phone_number: formData.phoneNumber,
-      gender: formData.gender || 'Belirtilmemiş',
-      country: formData.country,
-      city: formData.city,
-      interests: formData.interests || 'Belirtilmemiş',
-      social_media: socialMediaAccounts.join('\n') || 'Belirtilmemiş',
-      budget: formData.budget ? `${formData.budget} TRY` : 'Belirtilmemiş',
-      submission_date: new Date().toLocaleString('tr-TR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
+    const payload = {
+      type: 'influencer',
+      data: {
+        fullName: formData.fullName || "",
+        email: formData.email || "",
+        phoneNumber: formData.phoneNumber || "",
+        gender: formData.gender || "",
+        country: formData.country || "",
+        city: formData.city || "",
+        interests: formData.interests || "",
+        facebook: formData.facebook || "",
+        youtube: formData.youtube || "",
+        twitch: formData.twitch || "",
+        instagram: formData.instagram || "",
+        twitter: formData.twitter || "",
+        blog: formData.blog || "",
+        other: formData.other || "",
+        budget: formData.budget || ""
+      }
     };
 
-    await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams
-    );
+    const response = await sendEmailViaEdgeFunction('send-application-email', payload);
+    console.log("✅ Influencer başvuru e-postası başarıyla gönderildi:", response);
+    return response;
 
-    console.log('Influencer başvuru e-postası başarıyla gönderildi');
   } catch (error) {
-    console.error('E-posta gönderme hatası:', error);
-    // Hata olsa bile form kaydı devam etsin, sadece log'la
-    throw new Error('E-posta gönderilemedi, ancak başvurunuz kaydedildi.');
+    console.error("❌ E-posta gönderim hatası:", error);
+    throw error;
   }
 };
 
 /**
- * Müşteri başvurusu için e-posta gönderir
- * @param {object} formData - Form verileri
+ * Müşteri başvuru formunu Supabase Edge Function ile e-posta gönderir
+ * @param {Object} formData - Form verileri
+ * @returns {Promise} Response
  */
-export const sendCustomerApplicationEmail = async (formData) => {
-  // EmailJS yapılandırması kontrolü
-  if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-    console.warn('EmailJS yapılandırılmamış. E-posta gönderilemedi.');
-    return;
+const sendCustomerEmail = async (formData) => {
+  if (!supabase) {
+    throw new Error("Supabase client yapılandırılmamış");
   }
 
   try {
-    const templateParams = {
-      to_email: RECIPIENT_EMAIL,
-      application_type: 'Müşteri Başvurusu',
-      full_name: formData.fullName,
-      brand: formData.brand,
-      tax_number: formData.taxNumber || 'Belirtilmemiş',
-      phone_number: formData.phoneNumber,
-      platform: formData.platform || 'Belirtilmemiş',
-      content_type: formData.contentType || 'Belirtilmemiş',
-      description: formData.description,
-      submission_date: new Date().toLocaleString('tr-TR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      })
+    const payload = {
+      type: 'customer',
+      data: {
+        fullName: formData.fullName || "",
+        email: formData.email || "",
+        brand: formData.brand || "",
+        taxNumber: formData.taxNumber || "",
+        phoneNumber: formData.phoneNumber || "",
+        platform: formData.platform || "",
+        contentType: formData.contentType || "",
+        description: formData.description || ""
+      }
     };
 
-    await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams
-    );
+    const response = await sendEmailViaEdgeFunction('send-application-email', payload);
+    console.log("✅ Müşteri başvuru e-postası başarıyla gönderildi:", response);
+    return response;
 
-    console.log('Müşteri başvuru e-postası başarıyla gönderildi');
   } catch (error) {
-    console.error('E-posta gönderme hatası:', error);
-    // Hata olsa bile form kaydı devam etsin, sadece log'la
-    throw new Error('E-posta gönderilemedi, ancak başvurunuz kaydedildi.');
+    console.error("❌ E-posta gönderim hatası:", error);
+    throw error;
   }
 };
 
+/**
+ * Influencer başvuru formunu Supabase Edge Function ile gönderir (alias)
+ * @param {Object} formData - Form verileri
+ * @returns {Promise} Response
+ */
+const sendInfluencerApplicationEmail = sendInfluencerEmail;
 
+/**
+ * Müşteri başvuru formunu Supabase Edge Function ile gönderir (alias)
+ * @param {Object} formData - Form verileri
+ * @returns {Promise} Response
+ */
+const sendCustomerApplicationEmail = sendCustomerEmail;
+
+// Export
+export { 
+  sendInfluencerApplicationEmail,
+  sendCustomerApplicationEmail,
+  sendInfluencerEmail,
+  sendCustomerEmail,
+  isEmailServiceReady
+};

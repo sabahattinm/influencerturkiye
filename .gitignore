@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+dist-cpanel.zip
 *.local
 
 # Environment variables - CRITICAL: Never commit .env files!

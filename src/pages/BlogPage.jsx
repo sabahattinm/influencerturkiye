@@ -28,7 +28,7 @@ const BlogPage = () => {
       date: "12 Aralık 2025",
       category: "trends",
       readTime: "8 dk",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
       featured: true
     },
     {
@@ -50,7 +50,7 @@ const BlogPage = () => {
       date: "8 Aralık 2025",
       category: "case-studies",
       readTime: "10 dk",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
       featured: false
     },
     {
@@ -61,7 +61,7 @@ const BlogPage = () => {
       date: "5 Aralık 2025",
       category: "tips",
       readTime: "6 dk",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
       featured: false
     },
     {
@@ -83,7 +83,7 @@ const BlogPage = () => {
       date: "1 Aralık 2025",
       category: "marketing",
       readTime: "9 dk",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=500&fit=crop",
       featured: false
     },
     {
@@ -105,7 +105,7 @@ const BlogPage = () => {
       date: "25 Kasım 2025",
       category: "news",
       readTime: "7 dk",
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
+      image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop",
       featured: false
     }
   ];

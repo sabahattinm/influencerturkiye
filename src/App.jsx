@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -20,6 +19,7 @@ const KVKKPage = lazy(() => import('./pages/KVKKPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
+const VerifyPage = lazy(() => import('./pages/VerifyPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 
 // Loading component
@@ -93,6 +93,7 @@ function App() {
               <Route path="/auth/login" element={<LoginPage />} />
               <Route path="/auth/register" element={<RegisterPage />} />
               <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="/auth/verify" element={<VerifyPage />} />
             </Routes>
           </Suspense>
           
@@ -104,9 +105,6 @@ function App() {
           
           {/* WhatsApp Floating Button - Tüm sayfalarda (auth sayfaları hariç) */}
           <WhatsAppButtonWrapper />
-          
-          {/* Vercel Speed Insights - Performance metrics collection */}
-          <SpeedInsights />
         </div>
       </AuthProvider>
     </Router>

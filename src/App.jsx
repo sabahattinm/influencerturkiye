@@ -67,6 +67,11 @@ function App() {
             <Route path="/iletisim" element={<ContactPage />} />
             <Route path="/basvuru" element={<ApplicationPage />} />
             <Route path="/kvkk" element={<KVKKPage />} />
+            {/* Auth Routes */}
+            <Route path="/auth/login" element={<LoginPage />} />
+            <Route path="/auth/register" element={<RegisterPage />} />
+            <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/auth/verify" element={<VerifyPage />} />
             {/* Admin sayfası artık herkese açık */}
             <Route 
               path="/influencerturkiye" 

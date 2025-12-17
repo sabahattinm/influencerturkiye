@@ -1,21 +1,30 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Mail, Lock, AlertCircle, CheckCircle, User } from 'lucide-react';
 
 /**
  * RegisterPage Component
- * Kullanıcı kayıt sayfası - Email doğrulama ile
+ * Kullanıcı kayıt sayfası - Bağımsız (projenin işleyişinden bağımsız)
  */
 const RegisterPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signUp } = useAuth();
-  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    setError('');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,28 +32,39 @@ const RegisterPage = () => {
     setSuccess(false);
 
     // Validation
-    if (password !== confirmPassword) {
+    if (!formData.name.trim()) {
+      setError('Ad Soyad gereklidir');
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      setError('E-posta adresi gereklidir');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
       setError('Şifreler eşleşmiyor');
       return;
     }
 
-    if (password.length < 6) {
+    if (formData.password.length < 6) {
       setError('Şifre en az 6 karakter olmalıdır');
       return;
     }
 
     setLoading(true);
 
-    const { data, error: signUpError } = await signUp(email, password);
-
-    if (signUpError) {
-      setError(signUpError.message || 'Kayıt olurken bir hata oluştu');
+    // Simüle edilmiş kayıt işlemi - Gerçek backend bağlantısı yok
+    setTimeout(() => {
       setLoading(false);
-    } else {
       setSuccess(true);
-      setLoading(false);
-      // Email doğrulama mesajı göster
-    }
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+    }, 1500);
   };
 
   if (success) {
@@ -57,11 +77,7 @@ const RegisterPage = () => {
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Kayıt Başarılı!</h2>
             <p className="text-gray-600 mb-6">
-              E-posta adresinize doğrulama linki gönderildi. Lütfen e-postanızı kontrol edin ve 
-              hesabınızı doğrulayın.
-            </p>
-            <p className="text-sm text-gray-500 mb-6">
-              E-posta gelmedi mi? Spam klasörünü kontrol etmeyi unutmayın.
+              Üyelik formunuz başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.
             </p>
             <Link
               to="/auth/login"
@@ -111,6 +127,26 @@ const RegisterPage = () => {
               </div>
             )}
 
+            {/* Name Input */}
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                Ad Soyad
+              </label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition-all"
+                  placeholder="Adınız Soyadınız"
+                />
+              </div>
+            </div>
+
             {/* Email Input */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -120,9 +156,10 @@ const RegisterPage = () => {
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   id="email"
+                  name="email"
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition-all"
                   placeholder="ornek@email.com"
@@ -139,9 +176,10 @@ const RegisterPage = () => {
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   id="password"
+                  name="password"
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleChange}
                   required
                   minLength={6}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition-all"
@@ -159,9 +197,10 @@ const RegisterPage = () => {
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   id="confirmPassword"
+                  name="confirmPassword"
                   type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
                   required
                   minLength={6}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-600 focus:border-transparent outline-none transition-all"
@@ -173,8 +212,8 @@ const RegisterPage = () => {
             {/* Info */}
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
               <p className="text-xs text-gray-600">
-                <strong>Not:</strong> Kayıt olduktan sonra e-posta adresinize doğrulama linki gönderilecektir. 
-                Hesabınızı doğruladıktan sonra giriş yapabilirsiniz.
+                <strong>Not:</strong> Bu form bağımsız çalışmaktadır. Bilgileriniz gönderildikten sonra 
+                ekibimiz sizinle iletişime geçecektir.
               </p>
             </div>
 

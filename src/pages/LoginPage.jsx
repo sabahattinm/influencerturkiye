@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react';
+import { Mail, Lock, AlertCircle } from 'lucide-react';
 
 /**
  * LoginPage Component
- * Kullanıcı giriş sayfası
+ * Kullanıcı giriş sayfası - Bağımsız (projenin işleyişinden bağımsız)
  */
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,15 +18,25 @@ const LoginPage = () => {
     setError('');
     setLoading(true);
 
-    const { data, error: signInError } = await signIn(email, password);
-
-    if (signInError) {
-      setError(signInError.message || 'Giriş yapılırken bir hata oluştu');
+    // Validation
+    if (!email.trim()) {
+      setError('E-posta adresi gereklidir');
       setLoading(false);
-    } else {
-      // Başarılı giriş - başvuru sayfasına yönlendir
-      navigate('/basvuru');
+      return;
     }
+
+    if (!password.trim()) {
+      setError('Şifre gereklidir');
+      setLoading(false);
+      return;
+    }
+
+    // Simüle edilmiş giriş işlemi - Gerçek backend bağlantısı yok
+    setTimeout(() => {
+      setLoading(false);
+      // Başarılı giriş simülasyonu
+      navigate('/basvuru');
+    }, 1500);
   };
 
   return (

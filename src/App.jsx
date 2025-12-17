@@ -1,10 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ProtectedRoute from './components/ProtectedRoute';
-import AdminRoute from './components/AdminRoute';
 import WhatsAppButton from './components/WhatsAppButton';
 
 // Lazy load pages for better performance
@@ -47,66 +44,43 @@ const WhatsAppButtonWrapper = () => {
  * Main App Component
  * Influencer Türkiye - React Router ile sayfa yönetimi
  * Kırmızı-Beyaz Tema
- * Supabase Authentication entegrasyonu
+ * Supabase tabanlı formlar (auth olmadan)
  */
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <div className="min-h-screen bg-white">
-          {/* Navbar - Tüm sayfalarda görünür (auth sayfaları hariç) */}
+      <div className="min-h-screen bg-white">
+        {/* Navbar - Tüm sayfalarda görünür */}
+        <Navbar />
+        
+        {/* Routes */}
+        <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/auth/*" element={null} />
-            <Route path="*" element={<Navbar />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/nasil-calisiyoruz" element={<HowWeWorkPage />} />
+            <Route 
+              path="/portfolyo" 
+              element={<PortfolioPage />} 
+            />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogDetailPage />} />
+            <Route path="/iletisim" element={<ContactPage />} />
+            <Route path="/basvuru" element={<ApplicationPage />} />
+            <Route path="/kvkk" element={<KVKKPage />} />
+            {/* Admin sayfası artık herkese açık */}
+            <Route 
+              path="/influencerturkiye" 
+              element={<AdminPage />} 
+            />
           </Routes>
-          
-          {/* Routes */}
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/nasil-calisiyoruz" element={<HowWeWorkPage />} />
-              <Route 
-                path="/portfolyo" 
-                element={
-                  <ProtectedRoute>
-                    <PortfolioPage />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/:id" element={<BlogDetailPage />} />
-              <Route path="/iletisim" element={<ContactPage />} />
-              <Route path="/basvuru" element={<ApplicationPage />} />
-              <Route path="/kvkk" element={<KVKKPage />} />
-              
-              {/* Admin Route - Sadece admin kullanıcılar erişebilir - Gizli URL */}
-              <Route 
-                path="/influencerturkiye" 
-                element={
-                  <AdminRoute>
-                    <AdminPage />
-                  </AdminRoute>
-                } 
-              />
-              
-              {/* Auth Routes */}
-              <Route path="/auth/login" element={<LoginPage />} />
-              <Route path="/auth/register" element={<RegisterPage />} />
-              <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
-              <Route path="/auth/verify" element={<VerifyPage />} />
-            </Routes>
-          </Suspense>
-          
-          {/* Footer - Tüm sayfalarda görünür (auth sayfaları hariç) */}
-          <Routes>
-            <Route path="/auth/*" element={null} />
-            <Route path="*" element={<Footer />} />
-          </Routes>
-          
-          {/* WhatsApp Floating Button - Tüm sayfalarda (auth sayfaları hariç) */}
-          <WhatsAppButtonWrapper />
-        </div>
-      </AuthProvider>
+        </Suspense>
+        
+        {/* Footer - Tüm sayfalarda görünür */}
+        <Footer />
+        
+        {/* WhatsApp Floating Button - Tüm sayfalarda görünür */}
+        <WhatsAppButtonWrapper />
+      </div>
     </Router>
   );
 }

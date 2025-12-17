@@ -230,3 +230,115 @@ export const updateCustomerApplicationStatus = async (id, status) => {
     throw error;
   }
 };
+
+/**
+ * Influencer başvurusunu siler (Admin için)
+ * @param {number} id Başvuru ID'si
+ * @returns {Promise<void>}
+ */
+export const deleteInfluencerApplication = async (id) => {
+  if (!supabase) {
+    throw new Error('Supabase client yapılandırılmamış. Lütfen environment variable\'ları kontrol edin.');
+  }
+
+  try {
+    const { error } = await supabase
+      .from(APPLICATION_TABLE)
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error("Influencer başvuru silme hatası:", error);
+      throw new Error(error.message || 'Başvuru silinemedi.');
+    }
+  } catch (error) {
+    console.error("Influencer başvuru silme hatası:", error);
+    throw error;
+  }
+};
+
+/**
+ * Marka başvurusunu siler (Admin için)
+ * @param {number} id Başvuru ID'si
+ * @returns {Promise<void>}
+ */
+export const deleteCustomerApplication = async (id) => {
+  if (!supabase) {
+    throw new Error('Supabase client yapılandırılmamış. Lütfen environment variable\'ları kontrol edin.');
+  }
+
+  try {
+    const { error } = await supabase
+      .from(CUSTOMER_APPLICATION_TABLE)
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error("Marka başvuru silme hatası:", error);
+      throw new Error(error.message || 'Başvuru silinemedi.');
+    }
+  } catch (error) {
+    console.error("Marka başvuru silme hatası:", error);
+    throw error;
+  }
+};
+
+/**
+ * Birden fazla Influencer başvurusunu toplu olarak siler (Admin için)
+ * @param {Array<number>} ids Başvuru ID'leri dizisi
+ * @returns {Promise<void>}
+ */
+export const deleteMultipleInfluencerApplications = async (ids) => {
+  if (!supabase) {
+    throw new Error('Supabase client yapılandırılmamış. Lütfen environment variable\'ları kontrol edin.');
+  }
+
+  if (!ids || ids.length === 0) {
+    throw new Error('Silinecek başvuru seçilmedi.');
+  }
+
+  try {
+    const { error } = await supabase
+      .from(APPLICATION_TABLE)
+      .delete()
+      .in('id', ids);
+
+    if (error) {
+      console.error("Toplu influencer başvuru silme hatası:", error);
+      throw new Error(error.message || 'Başvurular silinemedi.');
+    }
+  } catch (error) {
+    console.error("Toplu influencer başvuru silme hatası:", error);
+    throw error;
+  }
+};
+
+/**
+ * Birden fazla Marka başvurusunu toplu olarak siler (Admin için)
+ * @param {Array<number>} ids Başvuru ID'leri dizisi
+ * @returns {Promise<void>}
+ */
+export const deleteMultipleCustomerApplications = async (ids) => {
+  if (!supabase) {
+    throw new Error('Supabase client yapılandırılmamış. Lütfen environment variable\'ları kontrol edin.');
+  }
+
+  if (!ids || ids.length === 0) {
+    throw new Error('Silinecek başvuru seçilmedi.');
+  }
+
+  try {
+    const { error } = await supabase
+      .from(CUSTOMER_APPLICATION_TABLE)
+      .delete()
+      .in('id', ids);
+
+    if (error) {
+      console.error("Toplu marka başvuru silme hatası:", error);
+      throw new Error(error.message || 'Başvurular silinemedi.');
+    }
+  } catch (error) {
+    console.error("Toplu marka başvuru silme hatası:", error);
+    throw error;
+  }
+};

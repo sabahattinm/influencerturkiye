@@ -202,3 +202,5 @@ Sorun yaşıyorsanız:
 2. cPanel Error Log'larına bakın
 3. `.htaccess` dosyasının doğru olduğundan emin olun
 4. Build log'larını kontrol edin
+
+

@@ -2,13 +2,18 @@ import { useState, useEffect } from 'react';
 import { 
   Users, Building2, Download, RefreshCw, Filter, 
   CheckCircle2, XCircle, Clock, Eye, Search,
-  Instagram, Youtube, Facebook, Twitter, Globe, Link as LinkIcon
+  Instagram, Youtube, Facebook, Twitter, Globe, Link as LinkIcon,
+  Trash2
 } from 'lucide-react';
 import { 
   getAllInfluencerApplications, 
   getAllCustomerApplications,
   updateInfluencerApplicationStatus,
-  updateCustomerApplicationStatus
+  updateCustomerApplicationStatus,
+  deleteInfluencerApplication,
+  deleteCustomerApplication,
+  deleteMultipleInfluencerApplications,
+  deleteMultipleCustomerApplications
 } from '../services/dataService';
 
 /**
@@ -22,6 +27,7 @@ const AdminPage = () => {
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState('all'); // 'all', 'new', 'reviewed', 'accepted', 'rejected'
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedIds, setSelectedIds] = useState(new Set()); // Seçili başvuru ID'leri
 
   // Başvuruları yükle
   const loadApplications = async () => {
@@ -45,6 +51,11 @@ const AdminPage = () => {
     loadApplications();
   }, []);
 
+  // Seçimleri temizle tab değiştiğinde
+  useEffect(() => {
+    setSelectedIds(new Set());
+  }, [activeTab]);
+
   // Durum güncelleme
   const handleStatusUpdate = async (type, id, newStatus) => {
     try {
@@ -62,6 +73,90 @@ const AdminPage = () => {
     } catch (error) {
       console.error('Durum güncellenirken hata:', error);
       alert('Durum güncellenirken bir hata oluştu.');
+    }
+  };
+
+  // Başvuru silme
+  const handleDelete = async (type, id, name) => {
+    // Onay dialogu göster
+    const confirmMessage = type === 'influencer' 
+      ? `${name} adlı influencer başvurusunu silmek istediğinizden emin misiniz?`
+      : `${name} adlı marka başvurusunu silmek istediğinizden emin misiniz?`;
+    
+    if (!window.confirm(confirmMessage + '\n\nBu işlem geri alınamaz.')) {
+      return;
+    }
+
+    try {
+      if (type === 'influencer') {
+        await deleteInfluencerApplication(id);
+        setInfluencerApplications(prev => prev.filter(app => app.id !== id));
+      } else {
+        await deleteCustomerApplication(id);
+        setCustomerApplications(prev => prev.filter(app => app.id !== id));
+      }
+      // Seçimden de kaldır
+      setSelectedIds(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(id);
+        return newSet;
+      });
+    } catch (error) {
+      console.error('Başvuru silinirken hata:', error);
+      alert('Başvuru silinirken bir hata oluştu: ' + (error.message || 'Bilinmeyen hata'));
+    }
+  };
+
+  // Toplu silme
+  const handleBulkDelete = async () => {
+    if (selectedIds.size === 0) {
+      alert('Lütfen silmek için en az bir başvuru seçin.');
+      return;
+    }
+
+    const count = selectedIds.size;
+    const confirmMessage = `${count} adet başvuruyu silmek istediğinizden emin misiniz?\n\nBu işlem geri alınamaz.`;
+    
+    if (!window.confirm(confirmMessage)) {
+      return;
+    }
+
+    try {
+      const idsArray = Array.from(selectedIds);
+      if (activeTab === 'influencers') {
+        await deleteMultipleInfluencerApplications(idsArray);
+        setInfluencerApplications(prev => prev.filter(app => !selectedIds.has(app.id)));
+      } else {
+        await deleteMultipleCustomerApplications(idsArray);
+        setCustomerApplications(prev => prev.filter(app => !selectedIds.has(app.id)));
+      }
+      setSelectedIds(new Set());
+      alert(`${count} adet başvuru başarıyla silindi.`);
+    } catch (error) {
+      console.error('Toplu silme hatası:', error);
+      alert('Başvurular silinirken bir hata oluştu: ' + (error.message || 'Bilinmeyen hata'));
+    }
+  };
+
+  // Tekil seçim toggle
+  const toggleSelection = (id) => {
+    setSelectedIds(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  // Tümünü seç/kaldır
+  const toggleSelectAll = () => {
+    if (selectedIds.size === currentApplications.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(currentApplications.map(app => app.id)));
     }
   };
 
@@ -126,19 +221,28 @@ const AdminPage = () => {
       return `"${escaped}"`;
     };
 
-    // Tarih formatını düzgün göster
+    // Tarih formatını düzgün göster (Excel uyumlu: dd/mm/yyyy hh:mm)
     const formatDate = (dateString) => {
       if (!dateString) return '';
       try {
         const date = new Date(dateString);
-        return date.toLocaleDateString('tr-TR', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit'
-        });
+        
+        // Geçersiz tarih kontrolü
+        if (isNaN(date.getTime())) {
+          return dateString;
+        }
+        
+        // Gün, ay, yıl, saat ve dakikayı formatla
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        
+        // Excel uyumlu format: dd/mm/yyyy hh:mm
+        return `${day}/${month}/${year} ${hours}:${minutes}`;
       } catch (e) {
+        console.error('Tarih formatlama hatası:', e);
         return dateString;
       }
     };
@@ -346,6 +450,30 @@ const AdminPage = () => {
                 <option value="rejected">Reddedildi</option>
               </select>
             </div>
+            {currentApplications.length > 0 && (
+              <>
+                <div className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-xl bg-gray-50">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.size === currentApplications.length && currentApplications.length > 0}
+                    onChange={toggleSelectAll}
+                    className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                  />
+                  <label className="text-sm text-gray-700 cursor-pointer">
+                    Tümünü Seç ({selectedIds.size})
+                  </label>
+                </div>
+                {selectedIds.size > 0 && (
+                  <button
+                    onClick={handleBulkDelete}
+                    className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-medium transition-colors"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                    Seçilenleri Sil ({selectedIds.size})
+                  </button>
+                )}
+              </>
+            )}
           </div>
         </div>
 
@@ -367,17 +495,29 @@ const AdminPage = () => {
           <div className="space-y-4">
             {currentApplications.map((app) => (
               <div key={app.id} className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                {activeTab === 'influencers' ? (
-                  <InfluencerApplicationCard 
-                    app={app} 
-                    onStatusUpdate={(newStatus) => handleStatusUpdate('influencer', app.id, newStatus)}
+                <div className="flex items-start gap-4">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.has(app.id)}
+                    onChange={() => toggleSelection(app.id)}
+                    className="w-5 h-5 mt-1 text-red-600 border-gray-300 rounded focus:ring-red-500"
                   />
-                ) : (
-                  <CustomerApplicationCard 
-                    app={app} 
-                    onStatusUpdate={(newStatus) => handleStatusUpdate('customer', app.id, newStatus)}
-                  />
-                )}
+                  <div className="flex-1">
+                    {activeTab === 'influencers' ? (
+                      <InfluencerApplicationCard 
+                        app={app} 
+                        onStatusUpdate={(newStatus) => handleStatusUpdate('influencer', app.id, newStatus)}
+                        onDelete={() => handleDelete('influencer', app.id, app.full_name)}
+                      />
+                    ) : (
+                      <CustomerApplicationCard 
+                        app={app} 
+                        onStatusUpdate={(newStatus) => handleStatusUpdate('customer', app.id, newStatus)}
+                        onDelete={() => handleDelete('customer', app.id, app.brand || app.full_name)}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -388,7 +528,7 @@ const AdminPage = () => {
 };
 
 // Influencer Application Card Component
-const InfluencerApplicationCard = ({ app, onStatusUpdate }) => {
+const InfluencerApplicationCard = ({ app, onStatusUpdate, onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const socialMediaLinks = [
@@ -429,6 +569,14 @@ const InfluencerApplicationCard = ({ app, onStatusUpdate }) => {
           >
             {isExpanded ? 'Daralt' : 'Detay'}
           </button>
+          <button
+            onClick={onDelete}
+            className="px-3 py-1 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-1"
+            title="Başvuruyu Sil"
+          >
+            <Trash2 className="w-4 h-4" />
+            Sil
+          </button>
         </div>
       </div>
 
@@ -468,7 +616,7 @@ const InfluencerApplicationCard = ({ app, onStatusUpdate }) => {
 };
 
 // Customer Application Card Component
-const CustomerApplicationCard = ({ app, onStatusUpdate }) => {
+const CustomerApplicationCard = ({ app, onStatusUpdate, onDelete }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const platformLabels = {
@@ -513,6 +661,14 @@ const CustomerApplicationCard = ({ app, onStatusUpdate }) => {
             className="px-3 py-1 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
           >
             {isExpanded ? 'Daralt' : 'Detay'}
+          </button>
+          <button
+            onClick={onDelete}
+            className="px-3 py-1 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-1"
+            title="Başvuruyu Sil"
+          >
+            <Trash2 className="w-4 h-4" />
+            Sil
           </button>
         </div>
       </div>

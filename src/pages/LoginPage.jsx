@@ -26,8 +26,8 @@ const LoginPage = () => {
       setError(signInError.message || 'Giriş yapılırken bir hata oluştu');
       setLoading(false);
     } else {
-      // Başarılı giriş - portföy sayfasına yönlendir
-      navigate('/portfolyo');
+      // Başarılı giriş - başvuru sayfasına yönlendir
+      navigate('/basvuru');
     }
   };
 

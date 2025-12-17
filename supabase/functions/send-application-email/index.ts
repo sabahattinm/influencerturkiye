@@ -174,6 +174,26 @@ Deno.serve(async (req) => {
     // Bu sayede e-posta başvuru sahibinden geliyormuş gibi görünür
     const FROM_EMAIL = Deno.env.get('FROM_EMAIL') || 'noreply@influencerturkiye.com';
 
+    // Gmail, Yahoo, Hotmail gibi genel email servislerini kontrol et
+    // Resend bu domain'leri doğrulamaya izin vermez
+    const blockedDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com', 'msn.com'];
+    const fromDomain = FROM_EMAIL.split('@')[1]?.toLowerCase();
+    
+    if (fromDomain && blockedDomains.includes(fromDomain)) {
+      console.error(`FROM_EMAIL genel email servisi kullanıyor: ${fromDomain}`);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: `FROM_EMAIL genel bir email servisi kullanıyor (${fromDomain}). Resend, gmail.com, yahoo.com gibi genel email servislerini doğrulamaya izin vermez.`,
+          solution: 'Lütfen Resend Dashboard\'da kendi domain\'inizi doğrulayın (örn: influencerturkiye.com) ve FROM_EMAIL environment variable\'ını doğrulanmış domain\'inizden bir adres olarak ayarlayın (örn: noreply@influencerturkiye.com). Detaylar: https://resend.com/domains'
+        }),
+        { 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 400 
+        }
+      );
+    }
+
     if (!RESEND_API_KEY) {
       console.error('RESEND_API_KEY environment variable is not set');
       return new Response(

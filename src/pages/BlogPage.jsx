@@ -39,7 +39,7 @@ const BlogPage = () => {
       date: "10 Aralık 2025",
       category: "trends",
       readTime: "7 dk",
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=500&fit=crop",
+      image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop",
       featured: false
     },
     {
@@ -65,17 +65,6 @@ const BlogPage = () => {
       featured: false
     },
     {
-      id: 5,
-      title: "TikTok Shop Entegrasyonu: Influencer Satışlarında Devrim",
-      excerpt: "TikTok Shop'un influencer pazarlamaya entegrasyonu, doğrudan satışları %300 artırdı. Bu yeni özellikten nasıl faydalanabilirsiniz?",
-      author: "Elif Şahin",
-      date: "3 Aralık 2025",
-      category: "trends",
-      readTime: "8 dk",
-      image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop",
-      featured: false
-    },
-    {
       id: 6,
       title: "Micro-Influencer Pazarlama: 2025'in En Etkili Stratejisi",
       excerpt: "Büyük bütçeler yerine akıllı stratejilerle markanızı büyütün. Micro-influencer pazarlamanın neden geleceğin pazarlaması olduğunu keşfedin.",
@@ -95,17 +84,6 @@ const BlogPage = () => {
       category: "trends",
       readTime: "6 dk",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
-      featured: false
-    },
-    {
-      id: 8,
-      title: "YouTube Shorts ve Instagram Reels: Kısa Video İçeriklerin Gücü",
-      excerpt: "2025'te kısa video içerikler, influencer pazarlamada en yüksek ROI'yi sağladı. Bu platformları nasıl etkili kullanabilirsiniz?",
-      author: "Mehmet Demir",
-      date: "25 Kasım 2025",
-      category: "news",
-      readTime: "7 dk",
-      image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop",
       featured: false
     }
   ];

@@ -35,3 +35,5 @@ try {
   console.log('\n💡 Alternatif: Manuel olarak dist klasörünü ZIP\'leyebilirsiniz.');
   process.exit(1);
 }
+
+

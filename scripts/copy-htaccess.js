@@ -30,3 +30,5 @@ try {
   console.error('❌ Hata:', error.message);
   process.exit(1);
 }
+
+
